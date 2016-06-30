@@ -1,0 +1,3 @@
+export const REQUEST_RESULTS = 'csl/REQUEST_RESULTS';
+export const RECEIVE_RESULTS = 'csl/RECEIVE_RESULTS';
+export const RECEIVE_FAILURE = 'csl/RECEIVE_FAILURE';

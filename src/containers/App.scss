@@ -1,0 +1,42 @@
+.csl {
+  margin: 0 auto;
+
+  position: relative;
+  text-align: left;
+  width: 994px;
+
+  &__form {
+    padding: 0 2em;
+    position: relative;
+
+    &__submit {
+      float: right;
+    }
+  }
+
+  &__header__banner {
+    height: 102px;
+  }
+
+  &__result-list {
+    clear: both;
+    font-size: 11px;
+  }
+
+  &__result-item {
+    &__addresses {
+      ul {
+        list-style-type: none;
+      }
+    }
+
+    &__detail {
+      border: 1px solid #cbcbcb;
+      border-collapse: collapse;
+
+      tr, td {
+        border: 1px solid #cbcbcb;
+      }
+    }
+  }
+}
