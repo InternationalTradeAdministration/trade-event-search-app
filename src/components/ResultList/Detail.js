@@ -1,8 +1,12 @@
 import React, { PropTypes } from 'react';
 import AddressList from './AddressList';
 
+const Link = ({ url }) => (
+  <a href={url}>{url}</a>
+);
+
 const Detail = ({ result }) => (
-  <table className="pure-table csl__result-item__detail">
+  <table className="explorer__result-item__detail">
     <tbody>
       <tr>
         <td>Source</td>
@@ -26,11 +30,11 @@ const Detail = ({ result }) => (
       </tr>
       <tr>
         <td>Source List URL</td>
-        <td>{result.source_list_url}</td>
+        <td><Link url={result.source_list_url} /></td>
       </tr>
       <tr>
         <td>Source Information URL</td>
-        <td>{result.source_information_url}</td>
+        <td><Link url={result.source_information_url} /></td>
       </tr>
       <tr>
         <td>Addresses</td>

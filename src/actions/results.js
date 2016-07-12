@@ -1,3 +1,5 @@
+import { stringify } from 'querystring';
+import { reduce, snakeCase } from 'lodash';
 import fetch from 'isomorphic-fetch';
 import { REQUEST_RESULTS, RECEIVE_RESULTS, RECEIVE_FAILURE } from 'constants';
 import config from '../config.js';
@@ -42,10 +44,20 @@ function shouldFetchResults(state) {
   return true;
 }
 
-export function fetchResultsIfNeeded(querystring) {
+function processParams(params) {
+  return stringify(
+    reduce(
+      params,
+      (result, value, key) => Object.assign(result, { [snakeCase(key)]: value }),
+      {}
+    )
+  );
+}
+
+export function fetchResultsIfNeeded(params) {
   return (dispatch, getState) => {
-    if (shouldFetchResults(getState(), querystring)) {
-      return dispatch(fetchResults(querystring));
+    if (shouldFetchResults(getState())) {
+      return dispatch(fetchResults(processParams(params)));
     }
     return Promise.resolve([]);
   };

@@ -23,8 +23,8 @@ class Item extends Component {
     const { name } = this.props.result;
     const { expand } = this.state;
     return (
-      <div>
-        <a href="#" className="csl__result-item__label" onClick={this.onClick}>{name}</a>
+      <div className="explorer__result-item">
+        <a href="#" className="explorer__result-item__label" onClick={this.onClick}>{name}</a>
         {expand ? <Detail result={this.props.result} /> : null}
       </div>
     );

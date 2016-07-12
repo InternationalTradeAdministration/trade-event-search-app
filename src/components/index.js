@@ -1,2 +1,2 @@
-export Form from './Form';
+export Form from './Form/Form';
 export ResultList from './ResultList';
