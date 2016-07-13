@@ -6,10 +6,17 @@ import useQueries from 'history/lib/useQueries';
 import configureStore from './configureStore';
 import App from './containers/App';
 
-const store = configureStore();
-const history = useQueries(createHistory)();
+function renderToElement(elementId, options) {
+  const store = configureStore();
+  const history = useQueries(createHistory)();
 
-render(
-  <Provider store={store} key="provider">
-    <App history={history} />
-  </Provider>, document.getElementById('explorer-app'));
+  render(
+    <Provider store={store} key="provider">
+      <App history={history} />
+    </Provider>, document.getElementById(elementId));
+}
+
+export default renderToElement;
+window.Explorer = {
+  render: renderToElement,
+};
