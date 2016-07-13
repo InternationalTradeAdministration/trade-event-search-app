@@ -1,17 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, hashHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import createHistory from 'history/lib/createHashHistory';
+import useQueries from 'history/lib/useQueries';
 import configureStore from './configureStore';
 import App from './containers/App';
 
 const store = configureStore();
-const history = syncHistoryWithStore(hashHistory, store);
+const history = useQueries(createHistory)();
 
 ReactDOM.render(
   <Provider store={store} key="provider">
-    <Router history={history}>
-      <Route path="/" component={App} />
-    </Router>
-  </Provider>, document.getElementById('csl-app'));
+    <App history={history} />
+  </Provider>, document.getElementById('explorer-app'));
