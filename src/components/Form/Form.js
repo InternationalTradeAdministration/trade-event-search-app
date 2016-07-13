@@ -18,7 +18,7 @@ TextField.propTypes = {
   label: PropTypes.string,
 };
 
-const SelectField = ({ description, field, label, options, multi=false }) => (
+const SelectField = ({ description, field, label, options, multi = false }) => (
   <div className="explorer__form__group">
     <label htmlFor={field.name}>{label}</label>
     {description ? <p>{description}</p> : null}
@@ -45,12 +45,13 @@ const Form = ({
       />
       <TextField
         field={name} label="Name"
-        description="Search for an entity’s name or one of its alternative names."
+        description="Search for an entity&#39;s name or one of its alternative names."
       />
       <SelectField
         field={fuzzyName} label="Fuzzy Name"
         options={[{ label: 'Off', value: '' }, { label: 'On', value: 'true' }]}
-        description="When set to off, the spelling of the Name you search for must be correct to get results. When set to on, the spelling for the Name you search for may be slightly off. Check the score for each result to determine how close a match it is to the entity's name or its alternative names. A score of 100 is an exact match. Results are returned with the highest scores first." />
+        description="When set to off, the spelling of the Name you search for must be correct to get results. When set to on, the spelling for the Name you search for may be slightly off. Check the score for each result to determine how close a match it is to the entity's name or its alternative names. A score of 100 is an exact match. Results are returned with the highest scores first."
+      />
 
       <TextField
         field={address} label="Address"

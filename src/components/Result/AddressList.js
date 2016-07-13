@@ -5,7 +5,7 @@ const AddressList = ({ addresses }) => {
   const ordered = map(addresses, (address, i) => (
     <li key={i}>
       <ul>
-        { map(address, (item, j) => (
+        {map(address, (item, j) => (
           <li key={j}>{item}</li>
         ))}
       </ul>

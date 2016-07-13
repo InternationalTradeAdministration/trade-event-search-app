@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { isEmpty, omitBy } from 'lodash';
+import { isEmpty, map, omitBy, reduce, snakeCase } from 'lodash';
 import { stringify } from 'querystring';
 import { hashHistory as history } from 'react-router';
-import { Form, ResultList } from '../components';
+import { Form, Result, Spinner } from '../components';
 import './App.scss';
 import { fetchResultsIfNeeded } from '../actions';
 
@@ -35,7 +35,8 @@ class App extends Component {
 
         <div className="explorer__content">
           <Form onSubmit={handleSubmit} initialValues={query} />
-          <ResultList results={results} onPaging={this.handlePaging} query={query} />
+          <Spinner spinnerName="circle" noFadeIn active={results.isFetching} />
+          <Result results={results} onPaging={this.handlePaging} query={query} />
         </div>
       </div>
     );
@@ -60,7 +61,11 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     handleSubmit: (form) => {
-      const params = omitBy(form, isEmpty);
+      const params = reduce(omitBy(form, isEmpty), (result, value, _key) => {
+        const key = snakeCase(_key);
+        return Object.assign(
+          result, { [key]: Array.isArray(value) ? map(value, 'value').join(',') : value });
+      }, {});
       dispatch(fetchResultsIfNeeded(params));
       push(params);
     },

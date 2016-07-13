@@ -1,5 +1,5 @@
 import { stringify } from 'querystring';
-import { reduce, snakeCase } from 'lodash';
+import { map, reduce, snakeCase } from 'lodash';
 import fetch from 'isomorphic-fetch';
 import { REQUEST_RESULTS, RECEIVE_RESULTS, RECEIVE_FAILURE } from 'constants';
 import config from '../config.js';
@@ -45,13 +45,7 @@ function shouldFetchResults(state) {
 }
 
 function processParams(params) {
-  return stringify(
-    reduce(
-      params,
-      (result, value, key) => Object.assign(result, { [snakeCase(key)]: value }),
-      {}
-    )
-  );
+  return stringify(params);
 }
 
 export function fetchResultsIfNeeded(params) {
