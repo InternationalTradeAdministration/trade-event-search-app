@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { camelCase, isEmpty, map, omitBy, reduce, snakeCase } from 'lodash';
+import { camelCase, isEmpty, map, omitBy, reduce, snakeCase } from '../utils/lodash';
 import { stringify } from 'querystring';
 import { Form, Result, Spinner } from '../components';
-import './App.scss';
 import { fetchResultsIfNeeded } from '../actions';
+import './App.scss';
 
 class App extends Component {
   componentDidMount() {
@@ -46,7 +46,7 @@ class App extends Component {
 
         <div className="explorer__content">
           <Form onSubmit={this.handleSubmit} initialValues={formValues} />
-          <Spinner spinnerName="circle" noFadeIn active={results.isFetching} />
+          <Spinner active={results.isFetching} />
           <Result results={results} onPaging={this.handlePaging} query={query} />
         </div>
       </div>

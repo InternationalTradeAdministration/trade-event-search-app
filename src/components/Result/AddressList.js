@@ -1,4 +1,4 @@
-import { map } from 'lodash';
+import { map } from '../../utils/lodash';
 import React, { PropTypes } from 'react';
 
 const AddressList = ({ addresses }) => {

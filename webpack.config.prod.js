@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   devtool: false,
@@ -40,7 +41,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css'],
+        loaders: ['style', 'css', 'postcss'],
       },
       {
         test: /\.scss$/,
@@ -75,4 +76,7 @@ module.exports = {
     ],
     extensions: ['', '.json', '.js', '.jsx'],
   },
+  postcss: () => (
+    [autoprefixer]
+  ),
 };
