@@ -1,5 +1,5 @@
 import { map } from 'lodash';
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 const AddressList = ({ addresses }) => {
   const ordered = map(addresses, (address, i) => (
@@ -14,6 +14,9 @@ const AddressList = ({ addresses }) => {
   return (
     <ol className="explorer__result-item__addresses">{ordered}</ol>
   );
+};
+AddressList.propTypes = {
+  addresses: PropTypes.array.isRequired,
 };
 
 export default AddressList;

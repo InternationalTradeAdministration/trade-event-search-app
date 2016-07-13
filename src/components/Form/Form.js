@@ -18,7 +18,7 @@ TextField.propTypes = {
   label: PropTypes.string,
 };
 
-const SelectField = ({ description, field, label, options, multi = false }) => (
+const SelectField = ({ description, field, label = 'Untitled', options, multi = false }) => (
   <div className="explorer__form__group">
     <label htmlFor={field.name}>{label}</label>
     {description ? <p>{description}</p> : null}
@@ -32,6 +32,13 @@ const SelectField = ({ description, field, label, options, multi = false }) => (
     </div>
   </div>
 );
+SelectField.propTypes = {
+  description: PropTypes.string,
+  field: PropTypes.object.isRequired,
+  label: PropTypes.string,
+  options: PropTypes.array.isRequired,
+  multi: PropTypes.bool,
+};
 
 const Form = ({
   fields: { q, name, fuzzyName, address, sources, countries },
@@ -52,7 +59,6 @@ const Form = ({
         options={[{ label: 'Off', value: '' }, { label: 'On', value: 'true' }]}
         description="When set to off, the spelling of the Name you search for must be correct to get results. When set to on, the spelling for the Name you search for may be slightly off. Check the score for each result to determine how close a match it is to the entity's name or its alternative names. A score of 100 is an exact match. Results are returned with the highest scores first."
       />
-
       <TextField
         field={address} label="Address"
         description="Search for the street address, city, province, and postal code of an entity."
@@ -65,7 +71,6 @@ const Form = ({
         field={countries} label="Countries" options={countryList} multi
         description="Choose which countries that you want to search. Note, the Nonproliferation Sanctions and ITAR Debarred lists do not include the country with an entity. If you choose to search for entities by country then you will not be searching these two lists."
       />
-
       <div className="explorer__form__group">
         <button className="explorer__form__submit pure-button pure-button-primary" onClick={handleSubmit}>
           <i className="fa fa-paper-plane" /> Search

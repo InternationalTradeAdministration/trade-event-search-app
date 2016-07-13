@@ -1,9 +1,8 @@
 import React, { PropTypes } from 'react';
 import AddressList from './AddressList';
 
-const Link = ({ url }) => (
-  <a href={url}>{url}</a>
-);
+const Link = ({ url }) => <a href={url}>{url}</a>;
+Link.propTypes = { url: PropTypes.string.isRequired };
 
 const Detail = ({ result }) => (
   <table className="explorer__result-item__detail">

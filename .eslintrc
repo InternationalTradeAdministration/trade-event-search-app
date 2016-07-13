@@ -20,5 +20,8 @@
   },
   "plugins": [
     "react", "import"
-  ]
+  ],
+  "globals": {
+    __DEVELOPMENT__: true
+  }
 }

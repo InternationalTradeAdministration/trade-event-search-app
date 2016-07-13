@@ -1,5 +1,4 @@
 import { stringify } from 'querystring';
-import { map, reduce, snakeCase } from 'lodash';
 import fetch from 'isomorphic-fetch';
 import { REQUEST_RESULTS, RECEIVE_RESULTS, RECEIVE_FAILURE } from 'constants';
 import config from '../config.js';
