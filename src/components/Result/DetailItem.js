@@ -1,4 +1,4 @@
-import { get, isEmpty, map } from '../../utils/lodash';
+import { compact, get, isEmpty, map } from '../../utils/lodash';
 import React, { PropTypes } from 'react';
 
 const isValidArray = (value) => (value && Array.isArray(value) && value.length);
@@ -20,7 +20,7 @@ ListItem.propTypes = { value: PropTypes.string };
 const AddressList = ({ value }) => {
   if (!isValidArray(value)) return null;
 
-  const items = map(value, (item, i) => !isEmpty(item) && (
+  const items = compact(map(value, (item, i) => !isEmpty(item) && (
     <li key={i}>
       <ul>
         <ListItem value={item.address} />
@@ -30,7 +30,7 @@ const AddressList = ({ value }) => {
         <ListItem value={item.country} />
       </ul>
     </li>
-  ));
+  )));
   if (isEmpty(items)) return null;
 
   return <ol className="explorer__result-item__addresses">{items}</ol>;
@@ -40,7 +40,7 @@ AddressList.propTypes = { value: PropTypes.array };
 const IdentificationList = ({ value }) => {
   if (!isValidArray(value)) return null;
 
-  const items = map(value, (item, i) => !isEmpty(item) && (
+  const items = compact(map(value, (item, i) => !isEmpty(item) && (
     <li key={i}>
       <table>
         <tbody>
@@ -52,7 +52,7 @@ const IdentificationList = ({ value }) => {
         </tbody>
       </table>
     </li>
-  ));
+  )));
   if (isEmpty(items)) return null;
 
   return <ol className="explorer__result-item__identifications">{items}</ol>;
@@ -62,9 +62,9 @@ IdentificationList.propTypes = { value: PropTypes.array };
 const UnorderedList = ({ value }) => {
   if (!isValidArray(value)) return null;
 
-  const items = map(value, (item, i) => !isEmpty(value) && (
-    <ListItem key={i}>{item}</ListItem>
-  ));
+  const items = compact(map(value, (item, i) => !isEmpty(value) && (
+    <ListItem key={i} value={item} />
+  )));
   if (isEmpty(items)) return null;
   return <ul>{items}</ul>;
 };
