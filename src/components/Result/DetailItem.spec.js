@@ -10,11 +10,11 @@ describe('<AddressList />', () => {
   it('render successfully', () => {
     const value = [
       { address: 'Address #1', city: 'City #1', state: 'State #1',
-        post_code: 'Post #1', country: 'Country #1' },
+        postal_code: 'Post #1', country: 'Country #1' },
       { address: 'Address #2', city: 'City #2', state: 'State #2',
-        post_code: 'Post #2', country: 'Country #2' },
+        postal_code: 'Post #2', country: 'Country #2' },
       { address: 'Address #3', city: 'City #3', state: 'State #3',
-        post_code: 'Post #3', country: 'Country #3' },
+        postal_code: 'Post #3', country: 'Country #3' },
     ];
     const wrapper = shallow(<AddressList value={value} />);
     expect(wrapper.find('.explorer__result-item__addresses').length).toEqual(1);

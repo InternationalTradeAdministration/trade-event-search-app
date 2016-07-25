@@ -26,7 +26,7 @@ const AddressList = ({ value }) => {
         <ListItem value={item.address} />
         <ListItem value={item.city} />
         <ListItem value={item.state} />
-        <ListItem value={item.post_code} />
+        <ListItem value={item.postal_code} />
         <ListItem value={item.country} />
       </ul>
     </li>

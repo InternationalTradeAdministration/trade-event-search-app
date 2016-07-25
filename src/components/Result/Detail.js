@@ -12,14 +12,16 @@ const Detail = ({ result }) => (
       <Row label="Title">{result.title}</Row>
       <Row label="Federal Register Notice">{result.federal_register_notice}</Row>
       <Row label="Standard Order">{result.standard_order}</Row>
+
+      <Row label="Full Name">{result.full_name}</Row>
       <Row label="Name">{result.name}</Row>
       <Row label="License Requirement">{result.license_requirement}</Row>
       <Row label="License Policy">{result.license_policy}</Row>
       <Row label="Call Sign">{result.call_sign}</Row>
-      <Row label="Vessel Type">{result.vessel_type}</Row>
       <Row label="Gross Tonnage">{result.gross_tonnage}</Row>
       <Row label="Gross Registered Tonnage">{result.gross_registered_tonnage}</Row>
       <Row label="Vessel Flag">{result.vessel_flag}</Row>
+      <Row label="Vessel Type">{result.vessel_type}</Row>
       <Row label="Vessel Owner">{result.vessel_owner}</Row>
       <Row label="Remarks">{result.remarks}</Row>
       <Row label="Source List">
@@ -28,11 +30,14 @@ const Detail = ({ result }) => (
       <Row label="Source Information URL">
         <Link value={result.source_information_url} />
       </Row>
+      <Row label="IDs">
+        <UnorderedList value={result.ids} />
+      </Row>
       <Row label="Programs">
         <UnorderedList value={result.programs} />
       </Row>
       <Row label="Alternative Names">
-        <UnorderedList value={result.alt} />
+        <UnorderedList value={result.alt_names} />
       </Row>
       <Row label="Nationalities">
         <UnorderedList value={result.nationalities} />
