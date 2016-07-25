@@ -50,7 +50,7 @@ const Detail = ({ result }) => (
         <AddressList value={result.addresses} />
       </Row>
       <Row label="Identifications">
-        <IdentificationList value={[{ type: 'Type', number: 123, country: 'US', issue_date: 'today', expiration_date: 'tomorrow' }]} />
+        <IdentificationList value={result.identifications} />
       </Row>
     </tbody>
   </table>
