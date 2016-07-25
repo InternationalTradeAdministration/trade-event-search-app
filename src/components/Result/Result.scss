@@ -13,14 +13,28 @@
     color: #126aa8;
   }
 
+  ol {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  td {
+    vertical-align: top;
+    &:nth-child(2) {
+      word-wrap: break-word;
+      word-break: break-word;
+    }
+  }
+
   &__addresses {
     margin: 0;
     padding: 0 0 0 20px;
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
   }
 
   &__detail {
@@ -38,6 +52,24 @@
       list-style-type: none;
       margin: 0;
       padding: 0;
+    }
+  }
+
+  &__identifications {
+    table {
+      display: inline-block;
+      margin-bottom: 0;
+      vertical-align: top;
+      width: auto;
+      td {
+        border: 0;
+        padding: 0 1rem 0 0;
+        white-space: nowrap;
+
+        &:first-child {
+          width: 7rem;
+        }
+      }
     }
   }
 }

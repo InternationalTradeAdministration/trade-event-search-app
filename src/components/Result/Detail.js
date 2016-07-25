@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { AddressList, Link, Row, UnorderedList } from './DetailItem';
+import { AddressList, IdentificationList, Link, Row, UnorderedList } from './DetailItem';
 
 const Detail = ({ result }) => (
   <table className="explorer__result-item__detail">
@@ -48,6 +48,9 @@ const Detail = ({ result }) => (
       </Row>
       <Row label="Addresses">
         <AddressList value={result.addresses} />
+      </Row>
+      <Row label="Identifications">
+        <IdentificationList value={[{ type: 'Type', number: 123, country: 'US', issue_date: 'today', expiration_date: 'tomorrow' }]} />
       </Row>
     </tbody>
   </table>
