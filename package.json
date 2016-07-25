@@ -13,7 +13,8 @@
     "lint": "eslint src",
     "build": "NODE_ENV=production webpack --config webpack.config.prod.js --color -p && cp -r ./public ./dist/public",
     "clean": "rm -rf ./dist",
-    "deploy": "node ./tasks/deploy.js"
+    "deploy": "node ./tasks/deploy.js",
+    "test": "mocha --compilers js:babel-compiler"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.7",
@@ -24,6 +25,7 @@
     "babel-preset-es2015": "^6.0.15",
     "babel-preset-react": "^6.0.15",
     "babel-preset-stage-0": "^6.0.15",
+    "babel-register": "^6.11.5",
     "chai": "^3.5.0",
     "css-loader": "^0.23.1",
     "eslint": "^2.13.1",
@@ -40,7 +42,10 @@
     "mocha": "^2.5.3",
     "node-sass": "^3.8.0",
     "postcss-loader": "^0.9.1",
+    "react": "^15.2.1",
     "react-a11y": "^0.3.3",
+    "react-addons-test-utils": "^15.2.1",
+    "react-dom": "^15.2.1",
     "react-hot-loader": "^1.3.0",
     "redbox-react": "^1.2.9",
     "sass-loader": "^4.0.0",
