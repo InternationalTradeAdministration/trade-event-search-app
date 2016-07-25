@@ -1,5 +1,15 @@
-import { get, map } from '../../utils/lodash';
+import { get, isEmpty, map } from '../../utils/lodash';
 import React, { PropTypes } from 'react';
+
+const isValidArray = (value) => (value && Array.isArray(value) && value.length);
+const isValidChildren = (value) => {
+  if (typeof value === 'undefined' || value === null || isEmpty(value)) return false;
+
+  if (typeof value.type === 'function' &&
+      typeof get(value, ['props', 'value']) === 'undefined') return false;
+
+  return true;
+};
 
 const Link = ({ value }) => <a href={value}>{value}</a>;
 Link.propTypes = { value: PropTypes.string.isRequired };
@@ -8,9 +18,9 @@ const ListItem = ({ value }) => (value ? <li>{value}</li> : null);
 ListItem.propTypes = { value: PropTypes.string };
 
 const AddressList = ({ value }) => {
-  if (!value) return null;
+  if (!isValidArray(value)) return null;
 
-  const items = map(value, (item, i) => (
+  const items = map(value, (item, i) => !isEmpty(item) && (
     <li key={i}>
       <ul>
         <ListItem value={item.address} />
@@ -21,16 +31,16 @@ const AddressList = ({ value }) => {
       </ul>
     </li>
   ));
-  return (
-    <ol className="explorer__result-item__addresses">{items}</ol>
-  );
+  if (isEmpty(items)) return null;
+
+  return <ol className="explorer__result-item__addresses">{items}</ol>;
 };
 AddressList.propTypes = { value: PropTypes.array };
 
 const IdentificationList = ({ value }) => {
-  if (!value) return null;
+  if (!isValidArray(value)) return null;
 
-  const items = map(value, (item, i) => (
+  const items = map(value, (item, i) => !isEmpty(item) && (
     <li key={i}>
       <table>
         <tbody>
@@ -43,27 +53,26 @@ const IdentificationList = ({ value }) => {
       </table>
     </li>
   ));
+  if (isEmpty(items)) return null;
 
-  return (
-    <ol className="explorer__result-item__identifications">{items}</ol>
-  );
+  return <ol className="explorer__result-item__identifications">{items}</ol>;
 };
 IdentificationList.propTypes = { value: PropTypes.array };
 
 const UnorderedList = ({ value }) => {
-  if (!value) return null;
-  const items = map(value, (item, i) => (
-    <li key={i}>{item}</li>
+  if (!isValidArray(value)) return null;
+
+  const items = map(value, (item, i) => !isEmpty(value) && (
+    <ListItem key={i}>{item}</ListItem>
   ));
+  if (isEmpty(items)) return null;
   return <ul>{items}</ul>;
 };
 UnorderedList.propTypes = { value: PropTypes.array };
 
 const Row = ({ label, children }) => {
-  if (typeof children === 'undefined' || children === null) return null;
-  // null if children is a react component but with no value as props
-  if (typeof children.type === 'function' &&
-      typeof get(children, ['props', 'value']) === 'undefined') return null;
+  if (!isValidChildren(children)) return null;
+
   return (
     <tr>
       <td>{label}</td>

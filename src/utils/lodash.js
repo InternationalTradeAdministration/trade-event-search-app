@@ -1,4 +1,5 @@
 export camelCase from 'lodash/camelCase';
+export compact from 'lodash/compact';
 export get from 'lodash/get';
 export isEmpty from 'lodash/isEmpty';
 export map from 'lodash/map';
