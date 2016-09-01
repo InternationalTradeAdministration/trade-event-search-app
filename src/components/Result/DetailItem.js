@@ -3,10 +3,9 @@ import React, { PropTypes } from 'react';
 
 const isValidArray = (value) => (value && Array.isArray(value) && value.length);
 const isValidChildren = (value) => {
-  if (typeof value === 'undefined' || value === null || isEmpty(value)) return false;
+  if (isEmpty(value)) return false;
 
-  if (typeof value.type === 'function' &&
-      typeof get(value, ['props', 'value']) === 'undefined') return false;
+  if (typeof value.type === 'function' && isEmpty(get(value, ['props', 'value']))) return false;
 
   return true;
 };
@@ -44,11 +43,11 @@ const IdentificationList = ({ value }) => {
     <li key={i}>
       <table>
         <tbody>
-          <Row label="Type">{item.type}</Row>
-          <Row label="Number">{item.number}</Row>
-          <Row label="Country">{item.country}</Row>
-          <Row label="Issue Date">{item.issue_date}</Row>
-          <Row label="Expiration Date">{item.expiration_date}</Row>
+          <Row label="Type:">{item.type}</Row>
+          <Row label="Number:">{item.number}</Row>
+          <Row label="Country:">{item.country}</Row>
+          <Row label="Issue Date:">{item.issue_date}</Row>
+          <Row label="Expiration Date:">{item.expiration_date}</Row>
         </tbody>
       </table>
     </li>

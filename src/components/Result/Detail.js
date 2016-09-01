@@ -52,6 +52,9 @@ const Detail = ({ result }) => (
       <Row label="Identifications">
         <IdentificationList value={result.identifications} />
       </Row>
+      <Row label="IDs">
+        <IdentificationList value={result.ids} />
+      </Row>
     </tbody>
   </table>
 );
