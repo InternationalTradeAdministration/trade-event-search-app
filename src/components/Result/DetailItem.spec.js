@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import expect from 'expect';
 import {
   AddressList, IdentificationList,
-  Link, ListItem, Row, UnorderedList
+  Link, ListItem, Row, UnorderedList,
 } from './DetailItem';
 
 describe('<AddressList />', () => {
