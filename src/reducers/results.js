@@ -1,12 +1,11 @@
-import 'babel-polyfill';
 import { REQUEST_RESULTS, RECEIVE_RESULTS, RECEIVE_FAILURE } from 'constants';
 
-export function results(state = {
+export default (state = {
   isFetching: false,
   items: [],
   invalidated: false,
   total: 0,
-}, action) {
+}, action) => {
   switch (action.type) {
   case REQUEST_RESULTS:
     return Object.assign({}, state, {
@@ -29,4 +28,4 @@ export function results(state = {
   default:
     return state;
   }
-}
+};
