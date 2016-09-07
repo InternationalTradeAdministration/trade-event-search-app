@@ -6,7 +6,7 @@ import useQueries from 'history/lib/useQueries';
 import configureStore from './configureStore';
 import App from './containers/App';
 
-function renderToElement(elementId, options) {
+function renderToElement(elementId) {
   const store = configureStore();
   const history = useQueries(createHistory)();
 
@@ -14,6 +14,21 @@ function renderToElement(elementId, options) {
     <Provider store={store} key="provider">
       <App history={history} />
     </Provider>, document.getElementById(elementId));
+
+  if (__DEVELOPMENT__ && module.hot) {
+    const { AppContainer } = require('react-hot-loader');
+
+    module.hot.accept('./containers/App', () => {
+      const NextApp = require('./containers/App').default;
+
+      render(
+        <AppContainer>
+          <Provider store={store} key="provider">
+            <NextApp history={history} />
+          </Provider>
+        </AppContainer>, document.getElementById(elementId));
+    });
+  }
 }
 
 export default renderToElement;

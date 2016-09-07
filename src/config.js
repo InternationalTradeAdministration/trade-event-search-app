@@ -1,5 +1,3 @@
-import 'babel-polyfill';
-
 const config = Object.assign({
   development: {
     api: {
