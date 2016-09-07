@@ -1,3 +1,4 @@
+import assign from 'object-assign';
 import { REQUEST_RESULTS, RECEIVE_RESULTS, RECEIVE_FAILURE } from 'constants';
 
 export default (state = {
@@ -8,19 +9,19 @@ export default (state = {
 }, action) => {
   switch (action.type) {
   case REQUEST_RESULTS:
-    return Object.assign({}, state, {
+    return assign({}, state, {
       isFetching: true,
       invalidated: false,
     });
   case RECEIVE_RESULTS:
-    return Object.assign({}, state, {
+    return assign({}, state, {
       isFetching: false,
       invalidated: false,
       items: action.payload.results,
       total: action.payload.total,
     });
   case RECEIVE_FAILURE:
-    return Object.assign({}, state, {
+    return assign({}, state, {
       isFetching: false,
       invalidated: false,
       error: action.error,

@@ -23,11 +23,11 @@ export function receiveFailure(error) {
   };
 }
 
-const { host, apiKey } = config.api.csl;
+const { host } = config.api.trade_events;
 function fetchResults(querystring) {
   return (dispatch) => {
     dispatch(requestResults(querystring));
-    return fetch(`${host}?api_key=${apiKey}&${querystring}`)
+    return fetch(`${host}?${querystring}`)
       .then(response => response.json())
       .then(json => dispatch(receiveResults(json)));
   };

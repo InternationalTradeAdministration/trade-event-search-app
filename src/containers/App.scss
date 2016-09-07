@@ -6,6 +6,12 @@
   text-align: left;
   width: 971px;
 
+  &__search-container {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+
   &__content {
     font-family: Verdana;
     margin: 0 58.5px;

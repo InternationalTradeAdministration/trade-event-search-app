@@ -1,15 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+
 import { camelCase, isEmpty, map, omitBy, reduce, snakeCase } from '../utils/lodash';
-import { stringify } from 'querystring';
-import { Form, Result, Spinner } from '../components';
+import { Search, Result, Spinner } from '../components';
 import { fetchResultsIfNeeded } from '../actions';
 import './App.scss';
 
 class App extends Component {
   componentDidMount() {
     const { dispatch, query } = this.props;
-    dispatch(fetchResultsIfNeeded(query));
   }
   handlePaging = (e) => {
     e.preventDefault();
@@ -21,33 +20,12 @@ class App extends Component {
     dispatch(fetchResultsIfNeeded(params));
     this.push(params);
   }
-  handleSubmit = (form) => {
-    const params = reduce(omitBy(form, isEmpty), (result, value, _key) => {
-      const key = snakeCase(_key);
-      return Object.assign(
-        result, { [key]: Array.isArray(value) ? map(value, 'value').join(',') : value });
-    }, {});
-    this.props.dispatch(fetchResultsIfNeeded(params));
-    this.push(params);
-  }
-  push(params) {
-    this.props.history.push(`?${stringify(params)}`);
-  }
   render() {
-    const { query, results } = this.props;
-    const formValues = reduce(
-      query,
-      (result, value, key) => Object.assign(result, { [camelCase(key)]: value }),
-      {});
+    const { handleSearch, query, results } = this.props;
     return (
       <div className="explorer">
-        <h1 className="Header-1"><b>Search the Consolidated Screening List</b></h1>
-        <p className="DefaultParagraph-1">Search <a href="http://export.gov/ecr/eg_main_023148.asp">eleven screening lists</a> at one time by filling in the search boxes below.  If you get too many results, try including more information to the additional fields.  If you get too few results, try searching one field at a time.</p>
-
-        <div className="explorer__content">
-          <Form onSubmit={this.handleSubmit} initialValues={formValues} />
-          <Spinner active={results.isFetching} />
-          <Result results={results} onPaging={this.handlePaging} query={query} />
+        <div className="explorer__search-container">
+          <Search onSubmit={handleSearch} q={'a'} />
         </div>
       </div>
     );
@@ -69,4 +47,13 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+    handleSearch: ({ q }) => {
+      dispatch(fetchResultsIfNeeded({ q }));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
