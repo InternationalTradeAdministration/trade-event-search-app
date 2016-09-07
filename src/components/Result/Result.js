@@ -1,5 +1,6 @@
-import { isEmpty, map, omit } from '../../utils/lodash';
 import React, { PropTypes } from 'react';
+
+import { isEmpty, map, omit } from '../../utils/lodash';
 import Item from './Item';
 import Pages from './Pages';
 import './Result.scss';
