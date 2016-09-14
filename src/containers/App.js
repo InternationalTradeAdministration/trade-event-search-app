@@ -1,15 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { camelCase, isEmpty, map, omitBy, reduce, snakeCase } from '../utils/lodash';
-import { Search, Result, Spinner } from '../components';
+import { isEmpty, omitBy } from '../utils/lodash';
+import { Search, Result, Spinner, Overlay } from '../components';
 import { fetchResultsIfNeeded } from '../actions';
 import './App.scss';
 
 class App extends Component {
   componentDidMount() {
-    const { dispatch, query } = this.props;
+    const { handleDidMount, query } = this.props;
+    handleDidMount(query);
   }
+
   handlePaging = (e) => {
     e.preventDefault();
     if (!e.target.dataset.page) return;
@@ -23,9 +25,19 @@ class App extends Component {
   render() {
     const { handleSearch, query, results } = this.props;
     return (
-      <div className="explorer">
-        <div className="explorer__search-container">
-          <Search onSubmit={handleSearch} q={'a'} />
+      <div className="explorer-container">
+        <div className="explorer">
+          <div className="explorer__search-container">
+            <Search onSubmit={handleSearch} q={'a'} />
+          </div>
+          <div className="explorer__result-container">
+            <Result results={results} query={query} />
+            <Overlay active={results.isFetching}>
+              <div className="explorer__spinner-container">
+                <Spinner active />
+              </div>
+            </Overlay>
+          </div>
         </div>
       </div>
     );
@@ -33,6 +45,8 @@ class App extends Component {
 }
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  handleDidMount: PropTypes.func.isRequired,
+  handleSearch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   query: PropTypes.object.isRequired,
   results: PropTypes.object,
@@ -47,11 +61,16 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, ownProps) {
+  const { history } = ownProps;
   return {
     dispatch,
+    handleDidMount: ({ q }) => {
+      dispatch(fetchResultsIfNeeded({ q }));
+    },
     handleSearch: ({ q }) => {
       dispatch(fetchResultsIfNeeded({ q }));
+      history.push(`?q=${q}`);
     },
   };
 }

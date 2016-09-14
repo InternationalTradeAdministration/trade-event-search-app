@@ -27,7 +27,7 @@ const { host } = config.api.trade_events;
 function fetchResults(querystring) {
   return (dispatch) => {
     dispatch(requestResults(querystring));
-    return fetch(`${host}?${querystring}`)
+    return fetch(`${host}?result_type=fields&${querystring}`)
       .then(response => response.json())
       .then(json => dispatch(receiveResults(json)));
   };

@@ -1,15 +1,35 @@
+.explorer-container {
+  background-color: #EFEFEF;
+  height: auto;
+  margin: 0;
+  min-height: 100%;
+  padding-top: 20px;
+  position: relative;
+}
+
 .explorer {
   font: 16px/1.5 Lato,"Helvetica Neue",Helvetica,Arial,sans-serif;
   font-weight: normal;
   margin: 0 auto;
   position: relative;
   text-align: left;
-  width: 971px;
+  max-width: 971px;
+  width: 100%;
+
+  &__result-container {
+    position: relative;
+  }
 
   &__search-container {
     display: block;
     margin: 0 auto;
-    margin-top: 20px;
+  }
+
+  &__spinner-container {
+    margin: 0 auto;
+    position: absolute;
+    top: 200px;
+    width: 100%;
   }
 
   &__content {

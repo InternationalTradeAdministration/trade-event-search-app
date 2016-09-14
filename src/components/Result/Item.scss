@@ -1,0 +1,85 @@
+.explorer__result-item {
+  background-color: #FFF;
+  border-bottom: 1px solid #CCC;
+  line-height: 22px;
+  position: relative;
+
+  &__datetime {
+    color: #666;
+    font-size: 12px;
+  }
+
+  &__name {
+    font-size: 13px;
+    font-weight: 500;
+    a {
+      color: #000;
+      text-decoration: none;
+    }
+  }
+
+  &__hosted-url {
+    font-size: 12px;
+  }
+
+  &__header {
+  }
+
+  &__body {
+    color: #000;
+    cursor: pointer;
+    display: block;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+
+  &__footer {
+    border-top: 1px solid #EEE;
+    position: relative;
+    > * {
+      padding: 7px 18px;
+      white-space: nowrap;
+    }
+  }
+
+  &__type {
+    background-color: #DDD;
+    border-radius: 12px;
+    padding: 2px 12px;
+    position: absolute;
+    right: 2px;
+    top: 7px;
+  }
+
+  &__cost {
+    background-color: #6694b2;
+    display: inline-block;
+    width: 10%;
+  }
+
+  &__hashtags {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  [data-tooltip]:before {
+    content: attr(data-tooltip);
+    display: none;
+    position: absolute;
+    opacity: 0;
+    padding: 0 10px;
+    width: auto;
+    white-space: nowrap;
+    color: #FFF;
+    border-radius: 10px;
+
+  }
+
+  [data-tooltip]:hover:before {
+    display: block;
+    opacity: 0.9;
+    background: #333;
+    margin-top: -50px;
+    margin-left: 20px;
+  }
+}
