@@ -32,8 +32,8 @@ Include the build output (e.g. `bundle.js` and `explorer.css`) within the `head`
 <html>
   <head>
     ...
-    <script src="bundle.js"></script> <!-- CSL Search js -->
-    <link href="explorer.css"></script> <!-- CSL Search styles -->
+    <script src="bundle.js"></script> <!-- Trade Event Search js -->
+    <link href="explorer.css"></script> <!-- Trade Event Search styles -->
     ...
   </head>
   <body>

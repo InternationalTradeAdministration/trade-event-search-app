@@ -1,7 +1,7 @@
 {
-  "name": "csl-search",
+  "name": "trade-event-search",
   "version": "0.0.1",
-  "description": "Consolidated Screening List Search App",
+  "description": "Trade Event Search App",
   "license": "MIT",
   "repository": {
     "type": "git",
