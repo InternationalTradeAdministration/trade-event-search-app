@@ -6,7 +6,7 @@
 }
 
 .explorer__form {
-  font-size: 11px;
+  font-size: 14px;
   margin: 0 auto;
   position: relative;
   max-width: 917px;
@@ -24,6 +24,7 @@
     border-radius: 4px;
     color: #FFF;
     float: right;
+    font-size: 1em;
     outline: none;
     padding: 7px 12px;
 
@@ -35,6 +36,7 @@
 
   &__group {
     clear: both;
+    overflow: auto;
     padding: 10px;
     width: 100%;
 
@@ -58,18 +60,18 @@
     height: 42px;
     min-width: 130px;
     vertical-align: middle;
-    width: 15%;
+    width: 20%;
 
     label {
       display: table-cell;
-      height: 30px;
+      height: 40px;
       vertical-align: middle;
     }
   }
 
   &__input-container {
     float: left;
-    width: 85%;
+    width: 80%;
   }
 
   &__input {
@@ -80,9 +82,9 @@
   }
 
   .Select-control {
-    height: 32px;
+    height: 42px;
   }
-  .Select-input {
-    height: 30px;
+  .Select-input, Select-placeholder {
+    height: 40px;
   }
 }
