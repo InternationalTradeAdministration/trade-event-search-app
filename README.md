@@ -1,7 +1,7 @@
-CSL Search
+Trade Event Search
 =====================
 
-A search client for Consolidated Screening List.
+A search client for Trade Events.
 
 ### Setup
 
