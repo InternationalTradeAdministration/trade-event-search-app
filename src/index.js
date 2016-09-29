@@ -1,31 +1,27 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import createHistory from 'history/lib/createHashHistory';
-import useQueries from 'history/lib/useQueries';
+import { hashHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from './configureStore';
-import App from './containers/App';
+import Root from './Root';
 
 function renderToElement(elementId) {
   const store = configureStore();
-  const history = useQueries(createHistory)();
+  const history = syncHistoryWithStore(hashHistory, store);
 
   render(
-    <Provider store={store} key="provider">
-      <App history={history} />
-    </Provider>, document.getElementById(elementId));
+    <Root store={store} history={history} />,
+    document.getElementById(elementId));
 
   if (__DEVELOPMENT__ && module.hot) {
     const { AppContainer } = require('react-hot-loader');
 
-    module.hot.accept('./containers/App', () => {
-      const NextApp = require('./containers/App').default;
+    module.hot.accept('./Root', () => {
+      const NextRoot = require('./Root').default;
 
       render(
         <AppContainer>
-          <Provider store={store} key="provider">
-            <NextApp history={history} />
-          </Provider>
+          <NextRoot store={store} history={history} />
         </AppContainer>, document.getElementById(elementId));
     });
   }

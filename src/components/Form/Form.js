@@ -1,88 +1,87 @@
+import assign from 'object-assign';
+import { omit, trim } from 'lodash';
+import qs from 'qs';
+import moment from 'moment';
 import React, { PropTypes } from 'react';
-import { reduxForm, Field } from 'redux-form';
-import Select from 'react-select';
-import countryList from '../../fixtures/countries';
-import sourceList from '../../fixtures/sources';
+import { connect } from 'react-redux';
+import { reduxForm, Field, getFormValues, formValueSelector } from 'redux-form';
+import { fetchResultsIfNeeded } from '../../actions';
+import DateRangeField from './DateRangeField';
+import SelectField from './SelectField';
+import TextField from './TextField';
 import './Form.scss';
 
-const TextField = ({ description, input, label, name }) => (
-  <div className="explorer__form__group">
-    <label htmlFor={name}>{label}</label>
-    {description ? <p>{description}</p> : null}
-    <input type="text" className="explorer__form__input" id={name} {...input} />
-  </div>
-);
-TextField.propTypes = {
-  description: PropTypes.string,
-  input: PropTypes.object.isRequired,
-  label: PropTypes.string,
-  name: PropTypes.string.isRequired,
-};
-
-const SelectField = ({ description, input, label = 'Untitled', name, options, multi = false }) => (
-  <div className="explorer__form__group">
-    <label htmlFor={name}>{label}</label>
-    {description ? <p>{description}</p> : null}
-    <div>
-      <Select
-        {...input}
-        options={options}
-        multi={multi} autoBlur
-        onBlur={() => input.onBlur(input.value)}
-      />
-    </div>
-  </div>
-);
-SelectField.propTypes = {
-  description: PropTypes.string,
-  input: PropTypes.object.isRequired,
-  label: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  options: PropTypes.array.isRequired,
-  multi: PropTypes.bool,
-};
-
 const Form = ({
-  handleSubmit,
+  aggregations, handleSubmit, hidden,
 }) => (
-  <form className="explorer__form" onSubmit={handleSubmit}>
-    <fieldset>
-      <Field
-        component={TextField} name="q" label="Keyword"
-        description="Search for words in the name, alternative names (aliases), title of the entity, and additional remarks regarding the entity."
-      />
-      <Field
-        component={TextField} name="name" label="Name"
-        description="Search for an entity&#39;s name or one of its alternative names."
-      />
-      <Field
-        component={SelectField} name="fuzzyName" label="Fuzzy Name"
-        options={[{ label: 'Off', value: '' }, { label: 'On', value: 'true' }]}
-        description="When set to off, the spelling of the Name you search for must be correct to get results. When set to on, the spelling for the Name you search for may be slightly off. Check the score for each result to determine how close a match it is to the entity's name or its alternative names. A score of 100 is an exact match. Results are returned with the highest scores first."
-      />
-      <Field
-        component={TextField} name="address" label="Address"
-        description="Search for the street address, city, province, and postal code of an entity."
-      />
-      <Field
-        component={SelectField} name="sources" label="Sources" options={sourceList} multi
-        description="Choose which of the eleven screening lists that you want to search."
-      />
-      <Field
-        component={SelectField} name="countries" label="Countries" options={countryList} multi
-        description="Choose which countries that you want to search. Note, the Nonproliferation Sanctions and ITAR Debarred lists do not include the country with an entity. If you choose to search for entities by country then you will not be searching these two lists."
-      />
-      <div className="explorer__form__group">
-        <button className="explorer__form__submit pure-button pure-button-primary" onClick={handleSubmit}>
-          <i className="fa fa-paper-plane" /> Search
-        </button>
-      </div>
-    </fieldset>
-  </form>
+  <div className="explorer__form-container">
+    <form className="explorer__form" onSubmit={handleSubmit}>
+      <fieldset>
+        <Field component={TextField} name="q" label="Keyword" placeholder="Search with keyword" />
+        <Field
+          component={SelectField} options={aggregations.countries}
+          name="countries" label="Country" isLoading={aggregations.isFetching}
+        />
+        <Field
+          component={SelectField} options={aggregations.states} hidden={hidden.state}
+          name="states" label="State" isLoading={aggregations.isFetching}
+        />
+        <Field
+          component={SelectField} options={aggregations.industries}
+          name="industries" label="Industry" isLoading={aggregations.isFetching}
+        />
+        <Field
+          component={SelectField} options={aggregations.eventTypes}
+          name="event_types" label="Event Type" isLoading={aggregations.isFetching}
+        />
+        <DateRangeField label={{ from: 'Start Date From', to: 'To' }} name="start_date_range" />
+        <div className="explorer__form__group">
+          <div className="explorer__form__label-container" />
+          <div className="explorer__form__input-container">
+            <input type="submit" className="explorer__form__submit" value="Search" />
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
 );
 Form.propTypes = {
+  aggregations: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  hidden: PropTypes.object,
 };
-export default reduxForm({
+
+const processQuerystring = (querystring) => qs.parse(trim(querystring, '?'));
+const selector = formValueSelector('form');
+function mapStateToProps(state) {
+  const { aggregations, routing } = state;
+  return {
+    aggregations: aggregations.items,
+    values: getFormValues(state),
+    hidden: {
+      state: selector(state, 'countries') !== 'United States',
+    },
+    initialValues: assign(
+      { start_date_range: {
+        from: moment().format('YYYY-MM-01'),
+        to: moment().clone()
+          .add(2, 'year')
+          .endOf('month')
+          .format('YYYY-MM-DD'),
+      } },
+      processQuerystring(routing.locationBeforeTransitions.search)
+    ),
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onSubmit: (params) => {
+      dispatch(fetchResultsIfNeeded(omit(params, 'offset')));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'form',
-})(Form);
+})(Form));

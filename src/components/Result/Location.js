@@ -1,0 +1,16 @@
+import { compact } from 'lodash';
+import React, { PropTypes } from 'react';
+
+const formatter = ({ city, state, country }) => (
+  compact([city, state, country]).join(', ')
+);
+const Location = ({ item }) => (
+  <div className="explorer__result_location">
+    <div>{formatter(item)}</div>
+  </div>
+);
+Location.propTypes = {
+  item: PropTypes.object.isRequired,
+};
+
+export default Location;

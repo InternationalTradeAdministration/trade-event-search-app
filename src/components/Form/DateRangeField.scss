@@ -1,0 +1,23 @@
+.explorer__form__daterange {
+  > * {
+    display: table-cell;
+  }
+
+  &__from, &__to {
+    width: 48%;
+  }
+
+  &__label__to {
+    padding: 0 10px;
+    vertical-align: middle;
+  }
+
+  input[type=text] {
+    border: 1px solid #CCC;
+    box-sizing: border-box;
+    height: 32px;
+    outline: 0;
+    padding: 0 10px;
+    width: 100%;
+  }
+}

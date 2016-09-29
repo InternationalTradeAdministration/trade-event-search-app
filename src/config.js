@@ -2,7 +2,7 @@ const config = Object.assign({
   development: {
     api: {
       trade_events: {
-        host: 'https://intrasearch.govwizely.com/v1/trade_events/search',
+        host: 'https://intrasearch.govwizely.com/v1/trade_events',
       },
     },
   },

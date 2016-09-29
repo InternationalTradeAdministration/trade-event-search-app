@@ -4,6 +4,20 @@
   line-height: 22px;
   position: relative;
 
+  &__main {
+    float: left;
+    width: 70%;
+  }
+
+  &__side {
+    float: left;
+    width: 30%;
+  }
+
+  &__row {
+
+  }
+
   &__datetime {
     color: #666;
     font-size: 12px;

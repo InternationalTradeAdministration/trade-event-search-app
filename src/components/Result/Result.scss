@@ -74,26 +74,3 @@
     }
   }
 }
-
-.explorer__result {
-  &__pages {
-    margin-top: 12px;
-  }
-
-  &__page-item {
-    background-color: #E6E6E6;
-    border: transparent;
-    border-radius: 2px;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 9px;
-    margin-right: 5px;
-    padding: .5em 1em;
-    text-decoration: none;
-
-    &.disabled {
-      cursor: not-allowed;
-      opacity: .4;
-    }
-  }
-}

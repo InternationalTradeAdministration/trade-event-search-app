@@ -5,6 +5,7 @@ export default (state = {
   isFetching: false,
   items: [],
   invalidated: false,
+  offset: 0,
   total: 0,
 }, action) => {
   switch (action.type) {
@@ -18,7 +19,8 @@ export default (state = {
       isFetching: false,
       invalidated: false,
       items: action.payload.results,
-      total: action.payload.total,
+      offset: action.payload.metadata.offset,
+      total: action.payload.metadata.total,
     });
   case RECEIVE_FAILURE:
     return assign({}, state, {

@@ -1,0 +1,18 @@
+.explorer__form__text {
+  border:  1px solid #ccc;
+  box-sizing: border-box;
+  color: #333;
+  height: 32px;
+  padding: 0 10px;
+  width: 100%;
+
+  &__clear {
+    color: #999;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    position: absolute;
+    right: 0.7em;
+    top: 0.3em;
+  }
+}

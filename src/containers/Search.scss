@@ -1,0 +1,20 @@
+.explorer__search {
+  background-color: #F1F1F1;
+  margin: 0 auto;
+
+  &__header-container {
+    background-color: #FFF;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  &__result-container, &__page-container {
+    margin: 0 auto;
+    max-width: 917px;
+  }
+
+  &__page-container {
+    min-height: 80px;
+    text-align: center;
+  }
+}

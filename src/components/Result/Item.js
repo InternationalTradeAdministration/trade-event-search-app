@@ -5,6 +5,12 @@ import Hashtag from './Hashtag';
 import './Item.scss';
 
 const dateFormat = (date) => moment(date, 'YYYY-MM-DD').format('ddd, MMM DD, YYYY').toUpperCase();
+const datePeriod = (startDate, endDate) => {
+  if (startDate === endDate) {
+    return dateFormat(startDate);
+  }
+  return `${dateFormat(startDate)} - ${dateFormat(endDate)}`;
+};
 const Item = ({ result }) => {
   const {
     name, description, cost, url,
@@ -13,21 +19,19 @@ const Item = ({ result }) => {
     start_date: startDate, end_date: endDate } = result;
   return (
     <div className="explorer__result-item">
-      <div className="explorer__result-item__header">
-        <div className="explorer__result-item__type">
-          {type}
-        </div>
+      <div className="explorer__result-item__name">
+        {name}
+      </div>
+      <div className="explorer__result-item__description">
+        {description}
+      </div>
+      <div className="explorer__result-item__datetime">
+        Date: {datePeriod(startDate, endDate)}
+      </div>
+      <div className="explorer__result-item__location">
+        Date: {datePeriod(startDate, endDate)}
       </div>
       <a href={hostedURL} className="explorer__result-item__body">
-        <div className="explorer__result-item__datetime">
-          {dateFormat(startDate)} - {dateFormat(endDate)}
-        </div>
-        <div className="explorer__result-item__name">
-          <a href={hostedURL}>{name}</a>
-        </div>
-        <div className="explorer__result-item__description">
-          {description}
-        </div>
         <div className="explorer__result-item__url">
           {url}
         </div>
