@@ -1,6 +1,7 @@
 .explorer__search {
   background-color: #F1F1F1;
   margin: 0 auto;
+  overflow: auto;
 
   &__header-container {
     background-color: #FFF;
@@ -14,7 +15,6 @@
   }
 
   &__page-container {
-    min-height: 80px;
     text-align: center;
   }
 }
