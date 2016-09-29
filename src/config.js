@@ -9,7 +9,7 @@ const config = Object.assign({
   production: {
     api: {
       trade_events: {
-        host: 'https://api.trade.gov/consolidated_screening_list/search',
+        host: 'https://intrasearch.govwizely.com/v1/trade_events',
       },
     },
   },
