@@ -19,8 +19,10 @@ Label.propTypes = {
 };
 
 const Result = ({ results }) => {
+  if (results.isFetching) return null;
+
   const items = map(results.items, (result) => (
-    <Item key={result.id} result={result} onClick={() => { window.location.href = result.hosted_url; }} />
+    <Item key={result.id} result={result} />
   ));
 
   return (

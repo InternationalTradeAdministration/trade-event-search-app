@@ -2,7 +2,7 @@ import assign from 'object-assign';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchResultsIfNeeded } from '../actions';
-import { Form, Page, Result } from '../components';
+import { Form, Message, Page, Result } from '../components';
 import './Search.scss';
 
 class Search extends Component {
@@ -21,11 +21,16 @@ class Search extends Component {
           <div className="explorer__search__form-container">
             <Form />
           </div>
-          <div className="explorer__search__result-container">
-            <Result results={results} onPaging={onPaging} />
+          <div className="explorer__search__message-container">
+            <Message results={results} />
           </div>
-          <div className="explorer__search__page-container">
-            <Page current={pages.current} total={pages.total} handleClick={onPaging} />
+          <div className="explorer__search__body-container">
+            <div className="explorer__search__result-container">
+              <Result results={results} />
+            </div>
+            <div className="explorer__search__page-container">
+              <Page results={results} handleClick={onPaging} />
+            </div>
           </div>
         </div>
       </div>
@@ -42,10 +47,6 @@ Search.propTypes = {
 function mapStateToProps(state) {
   const { results } = state;
   return {
-    pages: {
-      current: Math.ceil((results.offset ? results.offset : 0) / 10) + 1,
-      total: Math.ceil(results.total / 10),
-    },
     results,
   };
 }

@@ -21,16 +21,10 @@ function handleDateChange(onChange, field) {
     onChange(formatter[field](value));
   };
 }
-const datePickerInput = (onChange) => {
-  const onClear = (e) => {
-    e.stopPropagation();
-    onChange('');
-  };
-
+const datePickerInput = () => {
   return ({ value }) => ( // eslint-disable-line
     <div style={{ position: 'relative' }}>
       <input className="explorer__form__text" readOnly value={value && value.format(format)} placeholder="Select a month" />
-      <span onClick={onClear} className="explorer__form__text__clear" dangerouslySetInnerHTML={{ __html: '&times;' }} />
     </div>
   );
 };
@@ -41,7 +35,7 @@ const MonthField = ({ field, input }) => (
     name={input.name}
     onChange={handleDateChange(input.onChange, field)}
     value={input.value ? moment(input.value, 'YYYY-MM-DD') : ''}
-  >{datePickerInput(input.onChange)}</DatePicker>
+  >{datePickerInput()}</DatePicker>
 );
 MonthField.propTypes = {
   field: PropTypes.string.isRequired,

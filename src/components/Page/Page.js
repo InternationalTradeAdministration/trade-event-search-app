@@ -34,7 +34,12 @@ const handlePaging = (handler, current) => (
     return handler(e.target.dataset.page);
   }
 );
-const Pages = ({ current, displayed = 3, total, handleClick }) => {
+const Pages = ({ results, displayed = 3, handleClick }) => {
+  if (results.isFetching) return null;
+
+  const current = Math.ceil((results.offset ? results.offset : 0) / 10) + 1;
+  const total = Math.ceil(results.total / 10);
+
   const pages = pageGenerator(
     current,
     displayed,
@@ -47,11 +52,9 @@ const Pages = ({ current, displayed = 3, total, handleClick }) => {
 };
 
 Pages.propTypes = {
-  count: PropTypes.number,
-  current: PropTypes.number,
   displayed: PropTypes.number,
   handleClick: PropTypes.func.isRequired,
-  total: PropTypes.number.isRequired,
+  results: PropTypes.object.isRequired,
 };
 
 export default Pages;

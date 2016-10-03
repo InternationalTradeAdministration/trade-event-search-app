@@ -36,7 +36,6 @@
 
   &__group {
     clear: both;
-    overflow: auto;
     padding: 10px;
     width: 100%;
 
@@ -79,12 +78,5 @@
     box-sizing: border-box;
     display: inline-block;
     width: 100%;
-  }
-
-  .Select-control {
-    height: 42px;
-  }
-  .Select-input, Select-placeholder {
-    height: 40px;
   }
 }

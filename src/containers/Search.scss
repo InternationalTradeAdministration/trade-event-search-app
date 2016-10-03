@@ -1,5 +1,5 @@
 .explorer__search {
-  background-color: #F1F1F1;
+
   margin: 0 auto;
   overflow: auto;
 
@@ -9,9 +9,13 @@
     text-align: center;
   }
 
-  &__result-container, &__page-container {
-    margin: 0 auto;
+  &__body-container {
+    background-color: #F1F1F1;
+  }
+
+  &__result-container, &__page-container, &__message-container {
     max-width: 917px;
+    margin: 0 auto;
   }
 
   &__page-container {
