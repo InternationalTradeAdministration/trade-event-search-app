@@ -12,14 +12,16 @@ const SimpleCard = ({ result }) => {
   } = result;
   return (
     <div className="explorer__card explorer__card--simple">
-      <div className="explorer__card__main">
+      <a href={hostedURL} className="explorer__card__main">
         <div className="explorer__card__date">{dateFormatter(startDate, endDate)}</div>
-        <div className="explorer__card__name"><a href={hostedURL}>{name}</a></div>
+        <div className="explorer__card__name">{name}</div>
         <div className="explorer__card__location">
           <List className="explorer__card__list" component={Location} items={venues} />
         </div>
-        <a href={registrationURL} className="explorer__card__cost">{costFormatter(cost)}</a>
-      </div>
+      </a>
+      <a href={registrationURL || hostedURL} className="explorer__card__cost">
+        {costFormatter(cost)}
+      </a>
     </div>
   );
 };

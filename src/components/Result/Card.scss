@@ -93,14 +93,15 @@
 
 .explorer__card--simple {
   .explorer__card {
+    &__main {
+      display: block;
+      text-decoration: none;
+    }
+
     &__name {
       margin-right: 160px;
-      a {
-        color: #444;
-        font-size: 1em;
-        font-weight: 500;
-        text-decoration: none;
-      }
+      color: #444;
+      font-weight: 500;
     }
 
     &__location {
