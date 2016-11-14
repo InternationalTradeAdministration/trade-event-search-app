@@ -11,7 +11,8 @@ class Search extends Component {
   }
 
   render() {
-    const { onPaging, pages, results } = this.props;
+    const { onPaging, results } = this.props;
+    const customStyle = (results.isFetching || results.items.length < 1) ? { display: 'none' } : {};
     return (
       <div className="explorer__search-container">
         <div className="explorer__search">
@@ -24,7 +25,7 @@ class Search extends Component {
           <div className="explorer__search__message-container">
             <Message results={results} />
           </div>
-          <div className="explorer__search__body-container">
+          <div className="explorer__search__body-container" style={customStyle}>
             <div className="explorer__search__result-container">
               <Result results={results} />
             </div>
@@ -40,7 +41,6 @@ class Search extends Component {
 Search.propTypes = {
   onDidMount: PropTypes.func.isRequired,
   onPaging: PropTypes.func.isRequired,
-  pages: PropTypes.object.isRequired,
   results: PropTypes.object.isRequired,
 };
 

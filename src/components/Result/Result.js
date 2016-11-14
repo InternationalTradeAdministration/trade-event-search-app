@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import { isEmpty, map, omit } from '../../utils/lodash';
-import Item from './Card';
+import Item from './SimpleCard';
 import './Result.scss';
 
 const Label = ({ count, query }) => {
