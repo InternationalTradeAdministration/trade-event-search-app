@@ -11,6 +11,11 @@
 
   &__body-container {
     background-color: #F1F1F1;
+    padding-top: 1em;
+
+    &.hidden {
+      display: none;
+    }
   }
 
   &__result-container, &__page-container, &__message-container {

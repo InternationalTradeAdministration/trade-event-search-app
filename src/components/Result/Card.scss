@@ -44,7 +44,7 @@
   }
 
   &__name {
-    font-size: 1.2em;
+    font-size: 1.5em;
     font-weight: bold;
   }
 
@@ -87,6 +87,32 @@
       &:last-child {
         margin-bottom: 0;
       }
+    }
+  }
+}
+
+.explorer__card--simple {
+  .explorer__card {
+    &__main {
+      display: block;
+      text-decoration: none;
+    }
+
+    &__name {
+      margin-right: 160px;
+      color: #444;
+      font-weight: 500;
+    }
+
+    &__location {
+      color: #999;
+      margin-top: 1em;
+    }
+
+    &__cost {
+      position: absolute;
+      right: 0.5em;
+      top: 30%;
     }
   }
 }
