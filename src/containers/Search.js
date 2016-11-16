@@ -1,6 +1,7 @@
 import assign from 'object-assign';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { scroller, Element } from 'react-scroll';
 import { fetchResultsIfNeeded } from '../actions';
 import { Form, Message, Page, Result } from '../components';
 import './Search.scss';
@@ -8,6 +9,10 @@ import './Search.scss';
 class Search extends Component {
   componentDidMount() {
     this.props.onDidMount();
+  }
+
+  componentDidUpdate() {
+    scroller.scrollTo('anchor', { duration: 400, smooth: true });
   }
 
   render() {
@@ -22,9 +27,9 @@ class Search extends Component {
           <div className="explorer__search__form-container">
             <Form />
           </div>
-          <div className="explorer__search__message-container">
+          <Element name="anchor" className="explorer__search__message-container">
             <Message results={results} />
-          </div>
+          </Element>
           <div className="explorer__search__body-container" style={customStyle}>
             <div className="explorer__search__result-container">
               <Result results={results} />
