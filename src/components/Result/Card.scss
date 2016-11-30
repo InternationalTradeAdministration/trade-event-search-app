@@ -122,5 +122,19 @@
       right: 0.5em;
       top: 30%;
     }
+
+    &__type {
+      margin-top: 1em;
+      span {
+        &:empty {
+          display: none;
+        }
+        color: #666;
+        border: 1px solid #CCC;
+        border-radius: 8px;
+        font-size: 13px;
+        padding: 7px;
+      }
+    }
   }
 }
