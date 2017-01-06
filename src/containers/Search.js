@@ -17,7 +17,8 @@ class Search extends Component {
 
   render() {
     const { onPaging, results } = this.props;
-    const customStyle = (results.isFetching || results.items.length < 1) ? { display: 'none' } : {};
+    // set minHeight to 48px to allow Event Type dropdown options to be fully visible when no result.
+    const customStyle = (results.isFetching || results.items.length < 1) ? { visibility: 'hidden', minHeight: 48 } : {};
     return (
       <div className="explorer__search-container">
         <div className="explorer__search">
