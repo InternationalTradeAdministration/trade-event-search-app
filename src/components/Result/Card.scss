@@ -12,6 +12,10 @@
   &__main {
     border-bottom: 1px solid #EEE;
     padding: 12px 18px;
+
+    &:hover {
+      background-color: #EEE;
+    }
   }
 
   &__detail {
@@ -32,6 +36,10 @@
     top: 0;
     text-align: center;
     text-decoration: none;
+
+    &:hover {
+      background-color: #003f77;
+    }
   }
 
   &__link, &__link a {
@@ -113,6 +121,20 @@
       position: absolute;
       right: 0.5em;
       top: 30%;
+    }
+
+    &__type {
+      margin-top: 1em;
+      span {
+        &:empty {
+          display: none;
+        }
+        color: #666;
+        border: 1px solid #CCC;
+        border-radius: 8px;
+        font-size: 13px;
+        padding: 7px;
+      }
     }
   }
 }
