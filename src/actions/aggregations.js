@@ -1,5 +1,6 @@
 import { map, reduce } from 'lodash';
 import fetch from 'isomorphic-fetch';
+import { Html5Entities as Entities } from 'html-entities';
 import us from 'us';
 import { REQUEST_AGGREGATIONS, RECEIVE_AGGREGATIONS } from 'constants';
 import config from '../config.js';
@@ -21,14 +22,14 @@ function processResponse(aggregations) {
   if (!aggregations) return null;
   const { sources, event_types, industries, countries, states } = aggregations;
   return {
-    countries: map(countries, ({ key: value }) => ({ value, label: value })),
-    eventTypes: map(event_types, ({ key: value }) => ({ value, label: value })),
+    countries: map(countries, ({ key: value }) => ({ value, label: Entities.decode(value) })),
+    eventTypes: map(event_types, ({ key: value }) => ({ value, label: Entities.decode(value) })),
     industries: map(industries, ({ key }) => {
       const values = key.split('/');
       const value = values[values.length - 1];
-      return { value, label: value };
+      return { value, label: Entities.decode(value) };
     }, []),
-    sources: map(sources, ({ key: value }) => ({ value, label: value })),
+    sources: map(sources, ({ key: value }) => ({ value, label: Entities.decode(value) })),
     states: map(states, ({ key: value }) => ({ value, label: us.states[value].name })),
   };
 }
