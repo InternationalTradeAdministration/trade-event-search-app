@@ -15,7 +15,7 @@ const SimpleCard = ({ result }) => {
       <a href={hostedURL} className="explorer__card__main">
         <div className="explorer__card__date">{dateFormatter(startDate, endDate)}</div>
         <div className="explorer__card__name">{name}</div>
-        <div className="explorer__card__type"><span>{eventType}</span></div>
+        <div className="explorer__card__type"><span>Event Type: {eventType || 'n/a'}</span></div>
         <div className="explorer__card__location">
           <List className="explorer__card__list" component={Location} items={venues} />
         </div>
