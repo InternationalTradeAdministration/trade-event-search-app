@@ -24,7 +24,11 @@ function handleDateChange(onChange, field) {
 const datePickerInput = () => {
   return ({ value }) => ( // eslint-disable-line
     <div style={{ position: 'relative' }}>
-      <input className="explorer__form__text" readOnly value={value && value.format(format)} placeholder="Select a month" />
+      <input
+        className="explorer__form__text" readOnly
+        value={value && value.format(format)}
+        placeholder="Select a month"
+      />
     </div>
   );
 };

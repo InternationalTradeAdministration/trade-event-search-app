@@ -7,18 +7,18 @@ const Spinner = (props) => {
   return (
     <div className="explorer__spinner">
       <div className="sk-circle">
-        <div className="sk-child sk-circle1"></div>
-        <div className="sk-child sk-circle2"></div>
-        <div className="sk-child sk-circle3"></div>
-        <div className="sk-child sk-circle4"></div>
-        <div className="sk-child sk-circle5"></div>
-        <div className="sk-child sk-circle6"></div>
-        <div className="sk-child sk-circle7"></div>
-        <div className="sk-child sk-circle8"></div>
-        <div className="sk-child sk-circle9"></div>
-        <div className="sk-child sk-circle10"></div>
-        <div className="sk-child sk-circle11"></div>
-        <div className="sk-child sk-circle12"></div>
+        <div className="sk-child sk-circle1" />
+        <div className="sk-child sk-circle2" />
+        <div className="sk-child sk-circle3" />
+        <div className="sk-child sk-circle4" />
+        <div className="sk-child sk-circle5" />
+        <div className="sk-child sk-circle6" />
+        <div className="sk-child sk-circle7" />
+        <div className="sk-child sk-circle8" />
+        <div className="sk-child sk-circle9" />
+        <div className="sk-child sk-circle10" />
+        <div className="sk-child sk-circle11" />
+        <div className="sk-child sk-circle12" />
       </div>
     </div>
   );

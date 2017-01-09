@@ -17,7 +17,6 @@ const Form = ({
   <div className="explorer__form-container">
     <form className="explorer__form" onSubmit={handleSubmit}>
       <fieldset>
-        <Field component={TextField} name="q" label="Keyword" placeholder="Search with keyword" />
         <Field
           component={SelectField} options={aggregations.countries}
           name="countries" label="Country" isLoading={aggregations.isFetching}
@@ -34,6 +33,7 @@ const Form = ({
           component={SelectField} options={aggregations.eventTypes}
           name="event_types" label="Event Type" isLoading={aggregations.isFetching}
         />
+        <Field component={TextField} name="q" label="Keyword" placeholder="Search with keyword" />
         <DateRangeField label={{ from: 'Start Date From', to: 'To' }} name="start_date_range" />
         <div className="explorer__form__group">
           <div className="explorer__form__label-container" />
