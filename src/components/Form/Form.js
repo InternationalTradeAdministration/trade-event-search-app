@@ -17,7 +17,6 @@ const Form = ({
   <div className="explorer__form-container">
     <form className="explorer__form" onSubmit={handleSubmit}>
       <fieldset>
-
         <Field
           component={SelectField} options={aggregations.countries}
           name="countries" label="Country" isLoading={aggregations.isFetching}

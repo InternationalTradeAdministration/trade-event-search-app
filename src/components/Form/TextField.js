@@ -7,7 +7,13 @@ const TextField = ({ input, label, name, placeholder }) => (
       <label htmlFor={name}>{label}</label>
     </div>
     <div className="explorer__form__input-container">
-      <input type="text" className="explorer__form__text" id={name} placeholder={placeholder} {...input} />
+      <input
+        id={name}
+        type="text"
+        className="explorer__form__text"
+        placeholder={placeholder}
+        {...input}
+      />
     </div>
   </div>
 );
@@ -15,6 +21,7 @@ TextField.propTypes = {
   input: PropTypes.object.isRequired,
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
 };
 
 export default TextField;

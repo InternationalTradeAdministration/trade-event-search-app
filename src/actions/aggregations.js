@@ -1,4 +1,4 @@
-import { map, reduce } from 'lodash';
+import { map } from 'lodash';
 import fetch from 'isomorphic-fetch';
 import { Html5Entities as Entities } from 'html-entities';
 import us from 'us';
