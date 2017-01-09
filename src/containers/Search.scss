@@ -1,5 +1,4 @@
 .explorer__search {
-
   margin: 0 auto;
   overflow: auto;
 
@@ -12,6 +11,7 @@
   &__body-container {
     background-color: #F1F1F1;
     padding-top: 1em;
+    padding-bottom: 8em;
 
     &.hidden {
       display: none;
