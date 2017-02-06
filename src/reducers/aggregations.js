@@ -1,5 +1,5 @@
 import assign from 'object-assign';
-import { REQUEST_AGGREGATIONS, RECEIVE_AGGREGATIONS } from 'constants';
+import { REQUEST_AGGREGATIONS, RECEIVE_AGGREGATIONS } from '../constants';
 
 export default (state = {
   isFetching: false,
