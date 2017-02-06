@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 import Select from 'react-select';
 
 const SelectField = ({
-  hidden = false, input, isLoading, label = 'Untitled', name, options, multi = false,
+  hidden = false, input, isLoading, label = 'Untitled', options, multi = false,
 }) => {
   if (hidden) return null;
   return (
     <div className="explorer__form__group">
       <div className="explorer__form__label-container">
-        <label htmlFor={name}>{label}</label>
+        <label>{label}</label>
       </div>
       <div className="explorer__form__input-container">
         <Select
@@ -29,7 +29,6 @@ SelectField.propTypes = {
   input: PropTypes.object.isRequired,
   isLoading: PropTypes.bool,
   label: PropTypes.string,
-  name: PropTypes.string.isRequired,
   options: PropTypes.array,
   multi: PropTypes.bool,
 };
