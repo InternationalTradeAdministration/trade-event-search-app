@@ -1,7 +1,7 @@
 import { map } from 'lodash';
 import fetch from 'isomorphic-fetch';
 import { Html5Entities as Entities } from 'html-entities';
-import us from 'us';
+import us from '../utils/us';
 import { REQUEST_AGGREGATIONS, RECEIVE_AGGREGATIONS } from '../constants';
 import config from '../config.js';
 

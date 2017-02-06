@@ -83,7 +83,6 @@
     "redux-form": "^6.5.0",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",
-    "spinkit": "^1.2.5",
-    "us": "^2.0.0"
+    "spinkit": "^1.2.5"
   }
 }
