@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const LodashWebpackPlugin = require('lodash-webpack-plugin');
 
 module.exports = {
   devtool: false,
@@ -14,17 +15,9 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(true),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false, // ...but do not show warnings in the console (there is a lot of them)
-      },
-      mangle: true,
-      sourcemap: false,
-    }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"',
+        NODE_ENV: JSON.stringify('production'),
       },
       __DEVELOPMENT__: false,
     }),
@@ -37,6 +30,7 @@ module.exports = {
     }),
     new ExtractTextPlugin('explorer.css'),
     new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'index.html') }),
+    new LodashWebpackPlugin,
   ],
   module: {
     rules: [
