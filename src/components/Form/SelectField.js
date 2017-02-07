@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Select from 'react-select';
 
-const onChangeFn = (fn, input) => (value) => {
+const onChangeFn = (input, fn = () => {}) => (value) => {
   fn({ value, name: input.name });
   input.onChange(value);
 };
@@ -23,7 +23,7 @@ const SelectField = ({
           options={options}
           multi={multi} autoBlur
           onBlur={() => input.onBlur(input.value)}
-          onChange={onChangeFn(handleChange, input)}
+          onChange={onChangeFn(input, handleChange)}
           simpleValue
           value={input.value}
         />
@@ -32,6 +32,7 @@ const SelectField = ({
   );
 };
 SelectField.propTypes = {
+  handleChange: PropTypes.func,
   hidden: PropTypes.bool,
   input: PropTypes.object.isRequired,
   isLoading: PropTypes.bool,

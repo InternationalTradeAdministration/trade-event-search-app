@@ -18,9 +18,13 @@
   box-sizing: border-box;
 
 }
+
 .Select.is-disabled > .Select-control {
   background-color: #f9f9f9;
 
+  & > .Select-multi-value-wrapper > .Select-input {
+    outline: none;
+  }
 }
 .Select.is-disabled > .Select-control:hover {
   box-shadow: none;
