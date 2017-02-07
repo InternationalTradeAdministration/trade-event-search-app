@@ -21,7 +21,7 @@ Label.propTypes = {
 const Result = ({ results }) => {
   if (results.isFetching) return null;
 
-  const items = map(results.items, (result) => (
+  const items = map(results.items, result => (
     <Item key={result.id} result={result} />
   ));
 

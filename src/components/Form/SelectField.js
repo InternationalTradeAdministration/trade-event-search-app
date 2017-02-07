@@ -1,8 +1,13 @@
 import React, { PropTypes } from 'react';
 import Select from 'react-select';
 
+const onChangeFn = (fn, input) => (value) => {
+  fn({ value, name: input.name });
+  input.onChange(value);
+};
+
 const SelectField = ({
-  hidden = false, input, isLoading, label = 'Untitled', options, multi = false,
+  handleChange, hidden = false, input, isLoading, label = 'Untitled', options, multi = false,
 }) => {
   if (hidden) return null;
   return (
@@ -14,9 +19,11 @@ const SelectField = ({
         <Select
           {...input}
           isLoading={isLoading}
+          disabled={isLoading}
           options={options}
           multi={multi} autoBlur
           onBlur={() => input.onBlur(input.value)}
+          onChange={onChangeFn(handleChange, input)}
           simpleValue
           value={input.value}
         />

@@ -1,7 +1,7 @@
 import moment from 'moment';
 import numeral from 'numeral';
 
-export const dateFormat = (date) => (
+export const dateFormat = date => (
   moment(date, 'YYYY-MM-DD').format('ddd, MMM DD, YYYY').toUpperCase()
 );
 export const dateFormatter = (startDate, endDate) => {

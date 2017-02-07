@@ -1,13 +1,14 @@
-import { map } from 'lodash';
-import fetch from 'isomorphic-fetch';
+import assign from 'object-assign';
+import { isEmpty, map, pick } from 'lodash';
 import { Html5Entities as Entities } from 'html-entities';
 import us from '../utils/us';
 import { REQUEST_AGGREGATIONS, RECEIVE_AGGREGATIONS } from '../constants';
-import config from '../config.js';
+import { processParams, count, search } from './common';
 
-export function requestAggregations() {
+export function requestAggregations(payload = {}) {
   return {
     type: REQUEST_AGGREGATIONS,
+    payload,
   };
 }
 
@@ -34,14 +35,17 @@ function processResponse(aggregations) {
   };
 }
 
-const { host } = config.api.trade_events;
-function fetchAggregations() {
+function fetchAggregations(params) {
   return (dispatch) => {
-    dispatch(requestAggregations());
-    return fetch(`${host}/count`)
-      .then(response => response.json())
+    dispatch(requestAggregations(params));
+
+    const querystring = processParams(params);
+    const q = isEmpty(querystring) ? count() : search(querystring, { detail: false });
+
+    return q
       .then(json => processResponse(json.aggregations))
-      .then(aggregations => dispatch(receiveAggregations(aggregations)));
+      .then(aggregations => dispatch(receiveAggregations(aggregations)))
+      .catch(() => {});
   };
 }
 
@@ -55,10 +59,14 @@ function shouldFetchAggregations(state) {
   return true;
 }
 
-export function fetchAggregationsIfNeeded() {
+const permittedParams = ['countries', 'industries', 'event_types'];
+export function fetchAggregationsIfNeeded(params) {
   return (dispatch, getState) => {
-    if (shouldFetchAggregations(getState())) {
-      return dispatch(fetchAggregations());
+    const state = getState();
+
+    if (shouldFetchAggregations(state)) {
+      return dispatch(fetchAggregations(
+        pick(assign({}, state.aggregations.params, params), permittedParams)));
     }
     return Promise.resolve({});
   };

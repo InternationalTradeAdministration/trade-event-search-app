@@ -13,25 +13,23 @@ const defaultCalendarValue = now.clone();
 defaultCalendarValue.add(-1, 'month');
 
 const formatter = {
-  from: (value) => value.format('YYYY-MM-01'),
-  to: (value) => value.endOf('month').format('YYYY-MM-DD'),
+  from: value => value.format('YYYY-MM-01'),
+  to: value => value.endOf('month').format('YYYY-MM-DD'),
 };
 function handleDateChange(onChange, field) {
   return (value) => {
     onChange(formatter[field](value));
   };
 }
-const datePickerInput = () => {
-  return ({ value }) => ( // eslint-disable-line
-    <div style={{ position: 'relative' }}>
-      <input
-        className="explorer__form__text" readOnly
-        value={value && value.format(format)}
-        placeholder="Select a month"
-      />
-    </div>
+const datePickerInput = () => ({ value }) => ( // eslint-disable-line
+  <div style={{ position: 'relative' }}>
+    <input
+      className="explorer__form__text" readOnly
+      value={value && value.format(format)}
+      placeholder="Select a month"
+    />
+  </div>
   );
-};
 datePickerInput.propTypes = { value: PropTypes.object.isRequired };
 const MonthField = ({ field, input }) => (
   <DatePicker

@@ -16,7 +16,7 @@ export default function configureStore(initialState) {
     reducer,
     initialState,
     compose(
-      applyMiddleware(...middlewares)
-    )
+      applyMiddleware(...middlewares),
+    ),
   );
 }
