@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
 import Select from 'react-select';
 
-const onChangeFn = (input, fn = () => {}) => (value) => {
+const onChangeFn = (input, fn) => (value) => {
   fn({ value, name: input.name });
   input.onChange(value);
 };
 
 const SelectField = ({
-  handleChange, hidden = false, input, isLoading, label = 'Untitled', options, multi = false,
+  handleChange = () => {}, hidden = false, input, isLoading, label = 'Untitled', options, multi = false,
 }) => {
   if (hidden) return null;
   return (

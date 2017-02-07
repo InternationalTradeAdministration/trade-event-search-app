@@ -4,7 +4,7 @@ import qs from 'qs';
 import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { reset, reduxForm, Field, getFormValues, formValueSelector } from 'redux-form';
+import { reduxForm, Field, getFormValues, formValueSelector } from 'redux-form';
 import { fetchAggregationsIfNeeded, fetchResultsIfNeeded } from '../../actions';
 import DateRangeField from './DateRangeField';
 import SelectField from './SelectField';
@@ -54,7 +54,7 @@ const Form = ({
               type="reset"
               className="explorer__form__btn explorer__form__btn--reset"
               value="Reset"
-              onClick={() => { handleReset() && reset(); }}
+              onClick={() => { handleReset(); reset(); }}
             />
           </div>
         </div>
@@ -64,8 +64,12 @@ const Form = ({
 );
 Form.propTypes = {
   aggregations: PropTypes.object.isRequired,
+  handleAggregationChange: PropTypes.func.isRequired,
+  handleReset: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  hidden: PropTypes.object,
+  hidden: PropTypes.object.isRequired,
+  reset: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired,
 };
 
 const processQuerystring = querystring => qs.parse(trim(querystring, '?'));
@@ -101,7 +105,6 @@ function mapDispatchToProps(dispatch) {
     },
     handleReset: () => {
       dispatch(fetchAggregationsIfNeeded({ countries: '', industries: '', event_types: '' }));
-      return true;
     },
   };
 }

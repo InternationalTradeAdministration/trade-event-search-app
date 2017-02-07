@@ -2,7 +2,7 @@ import assign from 'object-assign';
 import { omitBy } from 'lodash';
 import fetch from 'isomorphic-fetch';
 import qs from 'qs';
-import config from '../config.js';
+import config from '../config';
 
 const isBlank = o => (o === null || o.length === 0);
 export function processParams(params) {
