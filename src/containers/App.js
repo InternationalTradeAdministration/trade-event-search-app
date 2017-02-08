@@ -25,10 +25,11 @@ App.propTypes = {
   handleDidMount: PropTypes.func.isRequired,
 };
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, ownProps) {
+  const { location: { query } } = ownProps;
   return {
     handleDidMount: () => {
-      dispatch(fetchAggregationsIfNeeded());
+      dispatch(fetchAggregationsIfNeeded(query));
     },
   };
 }

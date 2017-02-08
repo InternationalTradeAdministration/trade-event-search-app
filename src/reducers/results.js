@@ -1,5 +1,5 @@
 import assign from 'object-assign';
-import { REQUEST_RESULTS, RECEIVE_RESULTS, RECEIVE_FAILURE } from 'constants';
+import { REQUEST_RESULTS, RECEIVE_RESULTS, RECEIVE_FAILURE } from '../constants';
 
 export default (state = {
   isFetching: false,

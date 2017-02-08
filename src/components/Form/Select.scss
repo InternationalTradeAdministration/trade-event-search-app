@@ -18,9 +18,13 @@
   box-sizing: border-box;
 
 }
+
 .Select.is-disabled > .Select-control {
   background-color: #f9f9f9;
 
+  & > .Select-multi-value-wrapper > .Select-input {
+    outline: none;
+  }
 }
 .Select.is-disabled > .Select-control:hover {
   box-shadow: none;
@@ -131,7 +135,7 @@
   font-size: inherit;
   margin: 0;
   outline: none;
-  line-height: 14px;
+  line-height: 22px;
   /* For IE 8 compatibility */
   padding: 8px 0 12px;
   /* For IE 8 compatibility */
