@@ -1,5 +1,5 @@
 import assign from 'object-assign';
-import { REQUEST_AGGREGATIONS, RECEIVE_AGGREGATIONS } from '../constants';
+import { REQUEST_AGGREGATIONS, RECEIVE_AGGREGATIONS, RESET_FORM } from '../constants';
 
 export default (state = {
   isFetching: false,
@@ -20,6 +20,8 @@ export default (state = {
       invalidated: false,
       items: action.payload,
     });
+  case RESET_FORM:
+    return assign({}, state, { params: {} });
   default:
     return state;
   }

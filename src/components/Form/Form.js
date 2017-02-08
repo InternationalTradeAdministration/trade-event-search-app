@@ -1,11 +1,11 @@
 import assign from 'object-assign';
 import { omit, trim } from 'lodash';
 import qs from 'qs';
-import moment from 'moment';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field, getFormValues, formValueSelector } from 'redux-form';
-import { fetchAggregationsIfNeeded, fetchResultsIfNeeded } from '../../actions';
+import { fetchAggregationsIfNeeded, fetchResultsIfNeeded, resetForm } from '../../actions';
+import startDateRange from '../../utils/startDateRange';
 import DateRangeField from './DateRangeField';
 import SelectField from './SelectField';
 import TextField from './TextField';
@@ -14,7 +14,7 @@ import './Form.scss';
 const Form = ({
   aggregations,
   handleAggregationChange, handleReset, handleSubmit,
-  hidden, reset, submitting,
+  hidden, submitting,
 }) => (
   <div className="explorer__form-container">
     <form className="explorer__form" onSubmit={handleSubmit}>
@@ -54,7 +54,7 @@ const Form = ({
               type="reset"
               className="explorer__form__btn explorer__form__btn--reset"
               value="Reset"
-              onClick={() => { handleReset(); reset(); }}
+              onClick={handleReset}
             />
           </div>
         </div>
@@ -68,7 +68,6 @@ Form.propTypes = {
   handleReset: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   hidden: PropTypes.object.isRequired,
-  reset: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
 };
 
@@ -83,13 +82,7 @@ function mapStateToProps(state) {
       state: selector(state, 'countries') !== 'United States',
     },
     initialValues: assign(
-      { start_date_range: {
-        from: moment().format('YYYY-MM-01'),
-        to: moment().clone()
-          .add(2, 'year')
-          .endOf('month')
-          .format('YYYY-MM-DD'),
-      } },
+      { start_date_range: startDateRange },
       processQuerystring(routing.locationBeforeTransitions.search),
     ),
   };
@@ -104,7 +97,8 @@ function mapDispatchToProps(dispatch) {
       dispatch(fetchAggregationsIfNeeded({ [name]: value }));
     },
     handleReset: () => {
-      dispatch(fetchAggregationsIfNeeded({ countries: '', industries: '', event_types: '' }));
+      dispatch(resetForm());
+      dispatch(fetchAggregationsIfNeeded());
     },
   };
 }
