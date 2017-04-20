@@ -23,25 +23,6 @@
     padding: 12px 18px;
   }
 
-  &__cost {
-    background-color: #226daf;
-    color: #FFF;
-    cursor: pointer;
-    display: block;
-    font-size: 1.2em;
-    min-width: 80px;
-    padding: 7px;
-    position: absolute;
-    right: 12px;
-    top: 0;
-    text-align: center;
-    text-decoration: none;
-
-    &:hover {
-      background-color: #003f77;
-    }
-  }
-
   &__link, &__link a {
     color: #226daf;
     text-decoration: none;
@@ -115,12 +96,6 @@
     &__location {
       color: #999;
       margin-top: 1em;
-    }
-
-    &__cost {
-      position: absolute;
-      right: 0.5em;
-      top: 30%;
     }
 
     &__type {

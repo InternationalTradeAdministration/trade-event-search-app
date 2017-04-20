@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { costFormatter, dateFormatter } from '../../utils/formatter';
 import List from '../List/List';
 import Location from './Location';
@@ -19,9 +20,6 @@ const SimpleCard = ({ result }) => {
         <div className="explorer__card__location">
           <List className="explorer__card__list" component={Location} items={venues} />
         </div>
-      </a>
-      <a href={registrationURL || hostedURL} className="explorer__card__cost">
-        {costFormatter(cost)}
       </a>
     </div>
   );

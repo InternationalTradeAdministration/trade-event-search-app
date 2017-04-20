@@ -1,7 +1,8 @@
 import assign from 'object-assign';
 import { omit, trim } from 'lodash';
 import qs from 'qs';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm, Field, getFormValues, formValueSelector } from 'redux-form';
 import { fetchAggregationsIfNeeded, fetchResultsIfNeeded, resetForm } from '../../actions';
