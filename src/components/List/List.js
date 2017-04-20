@@ -1,5 +1,6 @@
 import { isEmpty, map } from 'lodash';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const List = ({ className = '', component, items }) => {
   if (isEmpty(items)) return null;

@@ -1,5 +1,6 @@
 import { compact } from 'lodash';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const formatter = ({ city, state, country }) => (
   compact([city, state, country]).join(', ')
