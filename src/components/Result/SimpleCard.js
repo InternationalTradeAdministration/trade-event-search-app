@@ -20,9 +20,6 @@ const SimpleCard = ({ result }) => {
           <List className="explorer__card__list" component={Location} items={venues} />
         </div>
       </a>
-      <a href={registrationURL || hostedURL} className="explorer__card__cost">
-        {costFormatter(cost)}
-      </a>
     </div>
   );
 };
