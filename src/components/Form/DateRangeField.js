@@ -1,24 +1,20 @@
 import React, { PropTypes } from 'react';
 import { Field } from 'redux-form';
-import Calendar from 'rc-calendar/lib/MonthCalendar';
+import Calendar from 'rc-calendar/lib/Calendar';
 import DatePicker from 'rc-calendar/lib/Picker';
 import moment from 'moment';
 import 'rc-calendar/assets/index.css';
 import './DateRangeField.scss';
 
-const format = 'MMMM YYYY';
+const format = 'MMMM DD, YYYY';
 const calendar = (<Calendar />);
 const now = moment();
 const defaultCalendarValue = now.clone();
 defaultCalendarValue.add(-1, 'month');
 
-const formatter = {
-  from: value => value.format('YYYY-MM-01'),
-  to: value => value.endOf('month').format('YYYY-MM-DD'),
-};
 function handleDateChange(onChange, field) {
   return (value) => {
-    onChange(formatter[field](value));
+    onChange(value.format('YYYY-MM-DD'));
   };
 }
 const datePickerInput = () => ({ value }) => ( // eslint-disable-line
@@ -26,12 +22,12 @@ const datePickerInput = () => ({ value }) => ( // eslint-disable-line
     <input
       className="explorer__form__text" readOnly
       value={value && value.format(format)}
-      placeholder="Select a month"
+      placeholder="Select a date"
     />
   </div>
   );
 datePickerInput.propTypes = { value: PropTypes.object.isRequired };
-const MonthField = ({ field, input }) => (
+const DateField = ({ field, input }) => (
   <DatePicker
     calendar={calendar}
     name={input.name}
@@ -39,7 +35,7 @@ const MonthField = ({ field, input }) => (
     value={input.value ? moment(input.value, 'YYYY-MM-DD') : ''}
   >{datePickerInput()}</DatePicker>
 );
-MonthField.propTypes = {
+DateField.propTypes = {
   field: PropTypes.string.isRequired,
   input: PropTypes.object.isRequired,
 };
@@ -50,13 +46,13 @@ const DateRangeField = ({ label, name }) => (
     </div>
     <div className="explorer__form__input-container explorer__form__daterange">
       <div className="explorer__form__daterange__from">
-        <Field component={MonthField} field="from" name={`${name}[from]`} />
+        <Field component={DateField} field="from" name={`${name}[from]`} />
       </div>
       <div className="explorer__form__daterange__label__to">
         <label htmlFor={name.to}>{label.to}</label>
       </div>
       <div className="explorer__form__daterange__to">
-        <Field component={MonthField} field="to" name={`${name}[to]`} />
+        <Field component={DateField} field="to" name={`${name}[to]`} />
       </div>
     </div>
   </div>
