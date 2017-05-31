@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { RESET_FORM } from '../constants';
 import startDateRange from '../utils/startDateRange';
 

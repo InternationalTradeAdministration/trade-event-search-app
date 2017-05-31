@@ -21,23 +21,36 @@ const Form = ({
     <form className="explorer__form" onSubmit={handleSubmit}>
       <fieldset>
         <Field
-          component={SelectField} options={aggregations.countries}
-          name="countries" label="Country" isLoading={aggregations.isFetching}
+          component={SelectField}
+          options={aggregations.countries}
+          name="countries"
+          label="Country"
+          isLoading={aggregations.isFetching}
           handleChange={handleAggregationChange}
         />
         <Field
-          component={SelectField} options={aggregations.states} hidden={hidden.state}
-          name="states" label="State" isLoading={aggregations.isFetching}
+          component={SelectField}
+          options={aggregations.states}
+          hidden={hidden.state}
+          name="states"
+          label="State"
+          isLoading={aggregations.isFetching}
           handleChange={handleAggregationChange}
         />
         <Field
-          component={SelectField} options={aggregations.industries}
-          name="industries" label="Industry" isLoading={aggregations.isFetching}
+          component={SelectField}
+          options={aggregations.industries}
+          name="industries"
+          label="Industry"
+          isLoading={aggregations.isFetching}
           handleChange={handleAggregationChange}
         />
         <Field
-          component={SelectField} options={aggregations.eventTypes}
-          name="event_types" label="Event Type" isLoading={aggregations.isFetching}
+          component={SelectField}
+          options={aggregations.eventTypes}
+          name="event_types"
+          label="Event Type"
+          isLoading={aggregations.isFetching}
           handleChange={handleAggregationChange}
         />
         <Field component={TextField} name="q" label="Keyword" placeholder="Search with keyword" />

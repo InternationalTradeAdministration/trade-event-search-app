@@ -14,7 +14,7 @@ const SelectField = ({
   return (
     <div className="explorer__form__group">
       <div className="explorer__form__label-container">
-        <label>{label}</label>
+        <label htmlFor={input.name}>{label}</label>
       </div>
       <div className="explorer__form__input-container">
         <Select
@@ -22,7 +22,8 @@ const SelectField = ({
           isLoading={isLoading}
           disabled={isLoading}
           options={options}
-          multi={multi} autoBlur
+          multi={multi}
+          autoBlur
           onBlur={() => input.onBlur(input.value)}
           onChange={onChangeFn(input, handleChange)}
           simpleValue

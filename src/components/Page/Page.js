@@ -10,19 +10,19 @@ function pageGenerator(current, displayed, total) {
   const pages = [];
   if (index > 1) {
     pages.push(
-      <div key="first-page" className="explorer__page__item" data-page={1}>1</div>);
+      <div key="first-page" role="button" tabIndex={0} className="explorer__page__item" data-page={1}>1</div>);
     pages.push(<Interval key="first-interval" />);
   }
   while (index > 0 && index <= total && index < current + displayed + 1) {
     const className = index === current ?
             'explorer__page__item disabled' :
             'explorer__page__item';
-    pages.push(<div key={index} className={className} data-page={index}>{index++}</div>);
+    pages.push(<div key={index} role="button" tabIndex={0} className={className} data-page={index}>{index++}</div>);
   }
   if (current + displayed < total) {
     pages.push(<Interval key="last-interval" />);
     pages.push(
-      <div key="last-page" className="explorer__page__item" data-page={total}>{total}</div>);
+      <div key="last-page" role="button" tabIndex={0} className="explorer__page__item" data-page={total}>{total}</div>);
   }
   return pages;
 }
@@ -46,7 +46,7 @@ const Pages = ({ results, displayed = 3, handleClick }) => {
     displayed,
     total);
   return (
-    <div className="explorer__page" onClick={handlePaging(handleClick, current)}>
+    <div className="explorer__page" role="button" tabIndex={0} onClick={handlePaging(handleClick, current)}>
       {pages}
     </div>
   );

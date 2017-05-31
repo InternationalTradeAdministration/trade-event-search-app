@@ -13,7 +13,7 @@ const now = moment();
 const defaultCalendarValue = now.clone();
 defaultCalendarValue.add(-1, 'month');
 
-function handleDateChange(onChange, field) {
+function handleDateChange(onChange) {
   return (value) => {
     onChange(value.format('YYYY-MM-DD'));
   };
@@ -21,23 +21,23 @@ function handleDateChange(onChange, field) {
 const datePickerInput = () => ({ value }) => ( // eslint-disable-line
   <div style={{ position: 'relative' }}>
     <input
-      className="explorer__form__text" readOnly
+      className="explorer__form__text"
+      readOnly
       value={value && value.format(format)}
       placeholder="Select a date"
     />
   </div>
   );
 datePickerInput.propTypes = { value: PropTypes.object.isRequired };
-const DateField = ({ field, input }) => (
+const DateField = ({ input }) => (
   <DatePicker
     calendar={calendar}
     name={input.name}
-    onChange={handleDateChange(input.onChange, field)}
+    onChange={handleDateChange(input.onChange)}
     value={input.value ? moment(input.value, 'YYYY-MM-DD') : ''}
   >{datePickerInput()}</DatePicker>
 );
 DateField.propTypes = {
-  field: PropTypes.string.isRequired,
   input: PropTypes.object.isRequired,
 };
 const DateRangeField = ({ label, name }) => (
