@@ -18,7 +18,7 @@ const Result = ({ results }) => {
   );
 };
 Result.propTypes = {
-  results: PropTypes.object,
+  results: PropTypes.object.isRequired,
 };
 
 export default Result;

@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { costFormatter, dateFormatter } from '../../utils/formatter';
+import { dateFormatter } from '../../utils/formatter';
 import List from '../List/List';
 import Location from './Location';
 import './Card.scss';
 
 const SimpleCard = ({ result }) => {
   const {
-    name, cost, venues, event_type: eventType,
-    registration_url: registrationURL, hosted_url: hostedURL,
+    name, venues, event_type: eventType,
+    hosted_url: hostedURL,
     start_date: startDate, end_date: endDate,
   } = result;
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './TextField.scss';
 
-const TextField = ({ input, label, placeholder }) => (
+const TextField = ({ input, label = '', placeholder = null }) => (
   <div className="explorer__form__group">
     <div className="explorer__form__label-container">
       <label htmlFor={input.name}>{label}</label>

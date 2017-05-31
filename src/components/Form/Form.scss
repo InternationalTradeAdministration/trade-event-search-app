@@ -33,6 +33,12 @@
       background-color: #999;
       border: 1px solid #999;
       margin-right: 5px;
+
+      &:hover, &:focus {
+        background-color: #DDD;
+        border: 1px solid #333;
+        color: #333;
+      }
     }
 
     &--submit {
@@ -44,6 +50,11 @@
         box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);
       }
 
+      &:hover, &:focus {
+        background-color: #c9d9f1;
+        border: 1px solid #5377af;
+        color: #104392;
+      }
     }
   }
 
