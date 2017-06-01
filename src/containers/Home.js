@@ -1,11 +1,11 @@
 import React from 'react';
-import { Form } from '../components';
+import { Form, Header } from '../components';
 import './Home.scss';
 
 const Home = () => (
   <div className="explorer__home">
     <div className="explorer__home__header-container">
-      <header>Trade Events Search</header>
+      <Header />
     </div>
     <div className="explorer__home__form-container">
       <Form />

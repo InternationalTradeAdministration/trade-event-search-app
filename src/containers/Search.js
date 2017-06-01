@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { scroller, Element } from 'react-scroll';
 import { fetchResultsIfNeeded } from '../actions';
-import { Form, Message, Page, Result } from '../components';
+import { Form, Header, Message, Page, Result } from '../components';
 import './Search.scss';
 
 class Search extends Component {
@@ -26,7 +26,7 @@ class Search extends Component {
       <div className="explorer__search-container">
         <div className="explorer__search">
           <div className="explorer__search__header-container">
-            <header>Trade Events Search</header>
+            <Header />
           </div>
           <div className="explorer__search__form-container">
             <Form />
