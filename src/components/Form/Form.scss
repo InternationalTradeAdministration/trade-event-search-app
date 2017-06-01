@@ -29,7 +29,7 @@
     outline: none;
     padding: 7px 12px;
 
-    &--reset {
+    &--reset[type="reset"] {
       background-color: #999;
       border: 1px solid #999;
       margin-right: 5px;
@@ -41,9 +41,21 @@
       }
     }
 
-    &--submit {
+    &--submit[type="submit"] {
+      appearance: none;
       background-color: #5377af;
+      background: #5377af;
       border: 1px solid #5377af;
+      border-radius: 4px;
+      color: #FFF;
+      cursor: pointer;
+      float: right;
+      font-size: 1em;
+      margin: 0;
+      outline: none;
+      padding: 7px 12px;
+      height: 33px;
+      width: 72.13px;
 
       &:active {
         border: 1px solid #000;
