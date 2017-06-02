@@ -32,6 +32,9 @@
     &--reset[type="reset"] {
       background-color: #999;
       border: 1px solid #999;
+      line-height: inherit;
+      height: auto;
+      width: auto;
       margin-right: 5px;
 
       &:hover, &:focus {
@@ -54,8 +57,9 @@
       margin: 0;
       outline: none;
       padding: 7px 12px;
-      height: 33px;
-      width: 72.13px;
+      line-height: inherit;
+      height: auto;
+      width: auto;
 
       &:active {
         border: 1px solid #000;
