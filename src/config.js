@@ -1,4 +1,6 @@
-const config = Object.assign({
+import assign from 'object-assign';
+
+const config = assign({
   development: {
     api: {
       trade_events: {
