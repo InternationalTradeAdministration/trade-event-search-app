@@ -1,24 +1,48 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { map } from 'lodash';
+import { connect } from 'react-redux';
 import Item from './SimpleCard';
+import { resetForm, fetchAggregationsIfNeeded } from '../../actions';
 import './Result.scss';
 
-const Result = ({ results }) => {
-  if (results.isFetching) return null;
+class Result extends Component {
 
-  const items = map(results.items, result => (
-    <Item key={result.id} result={result} />
-  ));
+  componentDidMount() {
+    if (this.props.results.total === 0) {
+      this.props.handleReset();
+    }
+  }
 
-  return (
-    <div className="explorer__result">
-      {items}
-    </div>
-  );
-};
+  componentDidUpdate() {
+    if (this.props.results.isFetching) return null;
+  }
+
+  render() {
+    const items = map(this.props.results.items, result => (
+      <Item key={result.id} result={result} />
+    ));
+
+    return (
+      <div className="explorer__result">
+        {items}
+      </div>
+    );
+  }
+
+}
 Result.propTypes = {
   results: PropTypes.object.isRequired,
+  handleReset: PropTypes.func.isRequired,
 };
 
-export default Result;
+function mapDispatchToProps(dispatch) {
+  return {
+    handleReset: () => {
+      dispatch(resetForm());
+      dispatch(fetchAggregationsIfNeeded());
+    },
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Result);
