@@ -12,11 +12,14 @@ const SimpleCard = ({ result }) => {
     start_date: startDate, end_date: endDate,
   } = result;
   return (
-    <div className="explorer__card explorer__card--simple">
+    <div className="explorer__card explorer__card--simple  col-4">
       <a href={hostedURL} className="explorer__card__main">
         <div className="explorer__card__date">{dateFormatter(startDate, endDate)}</div>
         <div className="explorer__card__name" dangerouslySetInnerHTML={{ __html: name }} />
         <div className="explorer__card__type"><span>Event Type: {eventType || 'n/a'}</span></div>
+        <div className="explorer__card__bottom">
+          <div className="cta-button"><a href={hostedURL}><p>Learn more</p></a></div>
+        </div>
         <div className="explorer__card__location">
           <List className="explorer__card__list" component={Location} items={venues} />
         </div>
