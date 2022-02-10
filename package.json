@@ -45,7 +45,7 @@
     "lodash-webpack-plugin": "^0.11.6",
     "meow": "^3.7.0",
     "mocha": "^3.4.2",
-    "node-sass": "^4.5.3",
+    "node-sass": "^7.0.0",
     "react": "^15.7.0",
     "react-a11y": "^0.3.3",
     "react-addons-test-utils": "^15.5.1",
