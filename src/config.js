@@ -4,14 +4,16 @@ const config = assign({
   development: {
     api: {
       trade_events: {
-        host: 'https://intrasearch.govwizely.com/v1/trade_events',
+        host: 'CHANGEME',
+        subscription_key: 'CHANGEME',
       },
     },
   },
   production: {
     api: {
       trade_events: {
-        host: 'https://intrasearch.export.gov/v1/trade_events',
+        host: 'CHANGEME',
+        subscription_key: 'CHANGEME',
       },
     },
   },

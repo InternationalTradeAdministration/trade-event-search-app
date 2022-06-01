@@ -5,6 +5,7 @@ import qs from 'qs';
 import config from '../config';
 
 const isBlank = o => (o === null || o.length === 0);
+
 export function processParams(params) {
   let query = assign({}, params);
   query.start_date_range = omitBy(query.start_date_range, isBlank);
@@ -12,9 +13,10 @@ export function processParams(params) {
   return qs.stringify(query);
 }
 
-const { host } = config.api.trade_events;
-export function search(querystring, options = { detail: true }) {
-  return fetch(`${host}/search?${querystring}${options.detail ? '&result_type=fields' : ''}`)
+const { host, subscription_key: subscriptionKey } = config.api.trade_events;
+
+export function search(querystring) {
+  return fetch(`${host}/search?${querystring}`, { headers: { 'subscription-key': subscriptionKey } })
     .then((response) => {
       if (response.status !== 200) {
         throw new Error(response.statusText);
@@ -24,6 +26,6 @@ export function search(querystring, options = { detail: true }) {
 }
 
 export function count() {
-  return fetch(`${host}/count`)
+  return fetch(`${host}/count`, { headers: { 'subscription-key': subscriptionKey } })
     .then(response => response.json());
 }
