@@ -16,7 +16,8 @@ export function processParams(params) {
 const { host, subscription_key: subscriptionKey } = config.api.trade_events;
 
 export function search(querystring) {
-  return fetch(`${host}/search?${querystring}`, { headers: { 'subscription-key': subscriptionKey } })
+  return fetch(`${host}/search?${querystring}`, {
+    headers: { 'Cache-Control': 'no-cache', 'subscription-key': subscriptionKey } })
     .then((response) => {
       if (response.status !== 200) {
         throw new Error(response.statusText);
@@ -26,6 +27,7 @@ export function search(querystring) {
 }
 
 export function count() {
-  return fetch(`${host}/count`, { headers: { 'subscription-key': subscriptionKey } })
+  return fetch(`${host}/count`, {
+    headers: { 'Cache-Control': 'no-cache', 'subscription-key': subscriptionKey } })
     .then(response => response.json());
 }
