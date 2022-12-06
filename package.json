@@ -67,7 +67,7 @@
     "numeral": "^2.0.6",
     "object-assign": "^4.1.1",
     "prop-types": "^15.5.10",
-    "qs": "^6.10.1",
+    "qs": "^6.10.3",
     "rc-calendar": "^8.4.0",
     "react-redux": "^5.0.5",
     "react-router": "^3.0.5",
