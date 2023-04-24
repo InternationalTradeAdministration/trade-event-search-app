@@ -18,9 +18,10 @@ function handleDateChange(onChange) {
     onChange(value.format('YYYY-MM-DD'));
   };
 }
-const datePickerInput = () => ({ value }) => ( // eslint-disable-line
+const datePickerInput = (id) => ({ value }) => ( // eslint-disable-line
   <div style={{ position: 'relative' }}>
     <input
+      id={id}
       className="explorer__form__text"
       readOnly
       value={value && value.format(format)}
@@ -35,7 +36,7 @@ const DateField = ({ input }) => (
     name={input.name}
     onChange={handleDateChange(input.onChange)}
     value={input.value ? moment(input.value, 'YYYY-MM-DD') : ''}
-  >{datePickerInput()}</DatePicker>
+  >{datePickerInput(input.name)}</DatePicker>
 );
 DateField.propTypes = {
   input: PropTypes.object.isRequired,
@@ -43,14 +44,14 @@ DateField.propTypes = {
 const DateRangeField = ({ label, name }) => (
   <div className="explorer__form__group">
     <div className="explorer__form__label-container">
-      <label htmlFor={name.from}>{label.from}</label>
+      <label htmlFor={`${name}[from]`}>{label.from}</label>
     </div>
     <div className="explorer__form__input-container explorer__form__daterange">
       <div className="explorer__form__daterange__from">
         <Field component={DateField} field="from" name={`${name}[from]`} />
       </div>
       <div className="explorer__form__daterange__label__to">
-        <label htmlFor={name.to}>{label.to}</label>
+        <label htmlFor={`${name}[to]`}>{label.to}</label>
       </div>
       <div className="explorer__form__daterange__to">
         <Field component={DateField} field="to" name={`${name}[to]`} />

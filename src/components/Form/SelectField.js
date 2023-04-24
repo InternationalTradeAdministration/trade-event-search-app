@@ -19,6 +19,7 @@ const SelectField = ({
       <div className="explorer__form__input-container">
         <Select
           {...input}
+          id={input.name}
           isLoading={isLoading}
           disabled={isLoading}
           options={options}
@@ -27,7 +28,6 @@ const SelectField = ({
           onBlur={() => input.onBlur(input.value)}
           onChange={onChangeFn(input, handleChange)}
           simpleValue
-          value={input.value}
         />
       </div>
     </div>
