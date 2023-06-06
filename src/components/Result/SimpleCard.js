@@ -13,7 +13,7 @@ const SimpleCard = ({ result }) => {
   } = result;
   return (
     <div className="explorer__card explorer__card--simple  col-4">
-      <a href={hostedURL} className="explorer__card__main">
+      <a href={hostedURL} className="explorer__card__main" target="_blank">
         <div className="explorer__card__date">{dateFormatter(startDate, endDate)}</div>
         <div className="explorer__card__name">{name}</div>
         <div className="explorer__card__type"><span>Event Type: {eventType || 'n/a'}</span></div>
