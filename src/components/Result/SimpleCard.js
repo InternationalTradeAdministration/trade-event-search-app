@@ -18,7 +18,7 @@ const SimpleCard = ({ result }) => {
         <div className="explorer__card__name">{name}</div>
         <div className="explorer__card__type"><span>Event Type: {eventType || 'n/a'}</span></div>
         <div className="explorer__card__bottom">
-          <div className="cta-button"><a href={hostedURL} target="_blank"><p>Learn more</p></a></div>
+          <div className="cta-button"><a href={hostedURL} target="_blank"><p>Learn more about {name}</p></a></div>
         </div>
         <div className="explorer__card__location">
           <List className="explorer__card__list" component={Location} items={venues} />
